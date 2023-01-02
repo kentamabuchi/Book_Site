@@ -1,0 +1,21 @@
+databases:
+  - name: <%= ENV['DB_NAME'] %>
+    databaseName: <%= ENV['DB_DBNAME'] %>
+    user: <%= ENV['DB_USERNAME'] %>
+    region: oregon
+
+services:
+  - type: web
+    name: <%= ENV['DB_NAME'] %>
+    env: ruby
+    region: oregon
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: ENV["DATABASE_URL"]
+        fromDatabase:
+          name: <%= ENV['DB_NAME'] %>
+          property: connectionString
+      - key: ENV["RAILS_MASTER_KEY"]
+        sync: false
