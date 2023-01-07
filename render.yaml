@@ -17,5 +17,5 @@ services:
         fromDatabase:
           name: ${DB_NAME}
           property: connectionString
-      - key: <%= ENV["RAILS_MASTER_KEY"] %>
+      - key: RAILS_MASTER_KEY
         sync: false
