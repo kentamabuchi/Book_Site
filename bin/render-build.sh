@@ -6,4 +6,4 @@ bundle install
 yarn install
 yarn build
 bundle exec rake assets:precompile
-bundle exec ridgepole -c config/database.yml -E production --apply -f db/schemas/Schemafile
+bundle exec rails db:migrate
