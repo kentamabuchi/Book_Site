@@ -26,8 +26,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-docker-compose.yml
-dockerfile
+/docker-compose.yml
+/dockerfile
 
 .DS_Store
 /.env
