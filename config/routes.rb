@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'books/index'
+    get 'books/show'
+    get 'books/new'
+  end
   devise_for :users
   root to: 'public/homes#top'
   namespace :public do
