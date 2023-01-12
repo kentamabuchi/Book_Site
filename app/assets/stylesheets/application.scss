@@ -1,0 +1,110 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import './color';
+ @import './template';
+
+ *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Toppan Bunkyu Midashi Gothic","凸版文久見出しゴシック";
+}
+
+body{
+    background-image: image-url("background_image.jpg");
+    background-attachment: fixed;
+    background-color: rgba($wt,0.7);
+    background-blend-mode: soft-light;
+}
+
+.header{
+  width: 90%;
+  border: 25px solid $mainColor_public;
+  margin: 50px auto;
+  @include mp(lg){
+    height: 500px;
+    background: linear-gradient(to left, $mainColor_public 70%, $subColor_public 30%);
+  @include flex(ro);
+  }
+  @include mp(md){
+    height: 600px;
+    background: linear-gradient(to bottom, $mainColor_public 40%, $subColor_public 60%);
+    @include flex(co)
+  }
+  &__topVisual{
+    height: 400px;
+    background-image: image-url("top_image.jpg");
+    background-size: cover;
+    margin: 25px auto;
+    position: relative;
+    @include mp(lg){
+      order: 2;
+      width: 70%;
+    }
+    @include mp(md){
+      width: 90%;
+    }
+    &__logo{
+      position: absolute;
+      bottom: 50px;
+      right:10%;
+      &__text{
+        color:white;
+      }
+    }
+  }
+  &__nav{
+    @include mp(lg){
+      order: 1;
+      height: 400px;
+      width: 20%;
+      margin: 25px 0;
+      text-align: center;
+    }
+    @include mp(md){
+      height: 200px;
+      width: 100%;
+      text-align: center;
+    }
+    &__list{
+      list-style: none;
+    }
+    &__item{
+      display: inline-block;
+      @include mp(lg){
+        &:nth-child(even){
+          margin-left: 75px;
+        }
+      }
+      &__link{
+        display: inline-block;
+        text-decoration: none !important;
+        height: 100px;
+        width: 100px;
+        background-color: $mainColor_public;
+        border-radius: 50%;
+        text-align: center;
+        color: $wt;
+      }
+      &__text{
+        margin-top: 35%;
+      }
+    }
+  }
+}
+
+
+
