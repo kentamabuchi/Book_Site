@@ -17,11 +17,11 @@ $flex: (
 );
 
 @mixin flex($dir) {
-  @if $dir == ("row" or "column"){
+  @if $dir == ("ro" or "co"){
     display: flex;
     flex: #{map-get($flex, $dir)}
   }
-  @else if $dir == center {
+  @else if $dir == "ce" {
     justify-content: #{map-get($flex, $dir)};
   }
 }
