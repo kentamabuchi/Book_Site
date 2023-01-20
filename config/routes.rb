@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get 'books/index'
     get 'books/show'
     get 'books/new'
+    post 'books/create'
   end
   devise_for :users
   root to: 'public/homes#top'
