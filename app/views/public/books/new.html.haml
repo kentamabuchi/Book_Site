@@ -2,5 +2,8 @@
 <p>Find me in app/views/public/books/new.html.erb</p>
 
 =form_with model: @book, url: 'public_books_create_path', method: :post, local: true do |f|
+  =f.text_field :name
+  =f.text_field :writer
+  =f.text_area :content
 
 
