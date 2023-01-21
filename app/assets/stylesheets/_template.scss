@@ -1,0 +1,28 @@
+$breakpoint: (
+  lg: 'screen and(min-width: 901px)',
+  md: 'screen and(max-width: 900px) and(min-width: 551px)',
+  sm: 'screen and(max-width: 550px)'
+);
+
+@mixin mp($bp) {
+  @media #{map-get($breakpoint, $bp)}{
+    @content;
+  }
+}
+
+$flex: (
+  ce: 'center',
+  ro: 'row',
+  co: 'column'
+);
+
+@mixin flex($dir) {
+  @if $dir == ("ro" or "co"){
+    display: flex;
+    flex: #{map-get($flex, $dir)}
+  }
+  @else if $dir == "ce" {
+    justify-content: #{map-get($flex, $dir)};
+  }
+}
+

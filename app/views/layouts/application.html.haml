@@ -1,0 +1,38 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:name=> "viewport",  :content=> "width=device-width,initial-scale=1.0"}
+    %title BookSite
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .header
+      .header__topVisual
+
+        .header__topVisual__logo
+          %h1.header__topVisual__logo__text
+            \\EE/_Books
+
+      .header__nav
+        %ul.header__nav__list
+          %li.header__nav__item
+            =link_to root_path, class: 'header__nav__item__link' do
+              %p.header__nav__item__text
+                HOME
+          %li.header__nav__item
+            =link_to root_path, class: 'header__nav__item__link' do
+              %p.header__nav__item__text
+                ABOUT
+          %li.header__nav__item
+            =link_to root_path, class: 'header__nav__item__link' do
+              %p.header__nav__item__text
+                INDEX
+          %li.header__nav__item
+            =link_to root_path, class: 'header__nav__item__link' do
+              %p.header__nav__item__text
+                ログイン
+
+    = yield

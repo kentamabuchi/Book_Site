@@ -1,0 +1,60 @@
+// Place all the styles related to the public/books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import './color';
+@import './template';
+
+.books {
+  &__contents{
+    width: 90%;
+    background-color: $wt;
+    margin: 50px auto;
+    padding:  50px;
+  }
+  &__newCreate{
+    @include flex(ro);
+    width: 50%;
+    background-color: $mainColor_public;
+    text-align: center;
+    margin: 0 50px 0 auto;
+    padding: 5px 30px;
+    
+    &__text {
+      display: inline-block;
+      color: $wt;
+      padding: 10px 20px;
+      margin-left: auto;
+    }
+    &__btn {
+      display: inline-block;
+      margin-right: auto;
+    }
+    &__link {
+      display: inline-block;
+      background-color: $subColor_public;
+      color: $wt;
+      padding: 10px 20px;
+      text-decoration: none !important;
+    }
+  }
+  &__newLineup {
+    height: 300px;
+    width: 90%;
+    background-color: red;
+    margin: 50px auto;
+
+  }
+  &__recomend {
+    height: 300px;
+    width: 90%;
+    background-color: yellow;
+    margin: 50px auto;
+  }
+  &__ranking {
+    height: 300px;
+    width: 90%;
+    background-color: green;
+    margin: 50px auto;
+  }
+}
