@@ -1,6 +1,23 @@
 <h1>Public::Books#new</h1>
 <p>Find me in app/views/public/books/new.html.erb</p>
 
-=form_with model: @book, url: 'public_books_create_path', method: :post, local: true do |f|
+=form_with model: @book, url: public_books_create_path, local: true do |f|
+  .form
+    .form__items
+      .form__item
+        .form__item__tag
+          %p 書籍名
+        .form__item__textBox
+          =f.text_field :name
+      .form__item
+        .form__item__tag
+          %p 作者
+        .form__item__textBox
+          =f.text_field :writer
+      .form__item
+        .form__item__tag
+          %p 内容
+        .form__item__textBox
+          =f.text_area :content
 
-
+  =f.submit "登録"

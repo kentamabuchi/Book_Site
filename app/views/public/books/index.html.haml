@@ -8,6 +8,12 @@
           =link_to "登録", public_books_new_path, class: "books__newCreate__link"
       .books__newLineup
         .books__newLineup__items
+          -@books.each do |book|
+            .books__newLineup__item
+              .books__newLineup__item__name
+                =book.name
+              .books__newLineup__item__writer
+                =book.writer
       .books__recomend
         .books__recomend__items
       .books__ranking

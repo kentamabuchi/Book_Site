@@ -1,5 +1,6 @@
 class Public::BooksController < ApplicationController
   def index
+    @books = Book.all
   end
 
   def show
@@ -12,13 +13,13 @@ class Public::BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.save
-    redirect_to pablic_books_index_path
+    redirect_to public_books_index_path
   end
 
   private
 
   def book_params
-    params.require(:book).premit(:createUser_id,
+    params.require(:book).permit(:createUser_id,
                                  :category_id,
                                  :genre_id,
                                  :name,
