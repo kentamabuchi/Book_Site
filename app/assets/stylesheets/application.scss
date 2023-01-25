@@ -30,7 +30,8 @@ body{
     background-blend-mode: soft-light;
 }
 
-.header{
+.topHeader{
+  position: relative;
   width: 90%;
   border: 25px solid $mainColor_public;
   margin: 50px auto;
@@ -45,11 +46,12 @@ body{
     @include flex(co)
   }
   &__topVisual{
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
     height: 400px;
     background-image: image-url("top_image.jpg");
     background-size: cover;
-    margin: 25px auto;
-    position: relative;
     @include mp(lg){
       order: 2;
       width: 70%;
@@ -58,17 +60,17 @@ body{
       width: 90%;
     }
     &__logo{
+      z-index: 10;
       position: absolute;
       bottom: 50px;
-      right:10%;
+      right:50px;
       &__text{
-        color:white;
+        color: $textColor_main;
       }
     }
   }
   &__nav{
     @include mp(lg){
-      order: 1;
       height: 400px;
       width: 20%;
       margin: 25px 0;
@@ -77,7 +79,6 @@ body{
     @include mp(md){
       height: 200px;
       width: 100%;
-      text-align: center;
     }
     &__list{
       list-style: none;
@@ -97,10 +98,56 @@ body{
         background-color: $mainColor_public;
         border-radius: 50%;
         text-align: center;
-        color: $wt;
+        color: $textColor_main;
       }
       &__text{
         margin-top: 35%;
+      }
+    }
+  }
+}
+
+.header {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  border-radius: 0 0 40% 40%;
+  background-color: $mainColor_public;
+  &__logo {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 20%;
+    &__text {
+      color: $wt;
+    }
+  }
+  &__nav {
+    display: inline-block;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    &__list {
+      list-style: none;
+      @include flex(ro);
+    }
+    &__item {
+      height: 200px;
+      &:nth-child(odd) {
+        margin-top: 50px;
+      }
+      &__link {
+        text-decoration: none;
+        display: inline-block;
+        height: 100px;
+        width: 100px;
+        color: $wt;
+        background-color: $subColor_public;
+        border-radius: 50%;
+        text-align: center;
+      }
+      &__text {
+        margin: 35px 0;
       }
     }
   }

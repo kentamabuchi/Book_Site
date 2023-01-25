@@ -9,30 +9,57 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .header
-      .header__topVisual
+    -if controller.action_name == 'top'
+      .topHeader
+        .topHeader__topVisual
 
-        .header__topVisual__logo
-          %h1.header__topVisual__logo__text
+          .topHeader__topVisual__logo
+            %h1.topHeader__topVisual__logo__text
+              \\EE/_Books
+
+        .topHeader__nav
+          %ul.topHeader__nav__list
+            %li.topHeader__nav__item
+              =link_to root_path, class: 'topHeader__nav__item__link' do
+                %p.topHeader__nav__item__text
+                  TOP
+            %li.topHeader__nav__item
+              =link_to root_path, class: 'topHeader__nav__item__link' do
+                %p.topHeader__nav__item__text
+                  ABOUT
+            %li.topHeader__nav__item
+              =link_to public_books_index_path, class: 'topHeader__nav__item__link' do
+                %p.topHeader__nav__item__text
+                  HOME
+            %li.topHeader__nav__item
+              =link_to root_path, class: 'topHeader__nav__item__link' do
+                %p.topHeader__nav__item__text
+                  ログイン
+    -else
+      .header
+
+        .header__logo
+          %h1.header__logo__text
             \\EE/_Books
 
-      .header__nav
-        %ul.header__nav__list
-          %li.header__nav__item
-            =link_to root_path, class: 'header__nav__item__link' do
-              %p.header__nav__item__text
-                HOME
-          %li.header__nav__item
-            =link_to root_path, class: 'header__nav__item__link' do
-              %p.header__nav__item__text
-                ABOUT
-          %li.header__nav__item
-            =link_to root_path, class: 'header__nav__item__link' do
-              %p.header__nav__item__text
-                INDEX
-          %li.header__nav__item
-            =link_to root_path, class: 'header__nav__item__link' do
-              %p.header__nav__item__text
-                ログイン
+        .header__nav
+          %ul.header__nav__list
+            %li.header__nav__item
+              =link_to root_path, class: 'header__nav__item__link' do
+                %p.header__nav__item__text
+                  TOP
+            %li.header__nav__item
+              =link_to root_path, class: 'header__nav__item__link' do
+                %p.header__nav__item__text
+                  ABOUT
+            %li.header__nav__item
+              =link_to public_books_index_path, class: 'header__nav__item__link' do
+                %p.header__nav__item__text
+                  HOME
+            %li.header__nav__item
+              =link_to root_path, class: 'header__nav__item__link' do
+                %p.header__nav__item__text
+                  ログイン
+
 
     = yield
