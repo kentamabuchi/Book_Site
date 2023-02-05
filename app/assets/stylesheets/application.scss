@@ -23,6 +23,20 @@
   font-family: "Toppan Bunkyu Midashi Gothic","凸版文久見出しゴシック";
 }
 
+
+.error{
+  &__form{
+    border: 2px solid red;
+  }
+  &__text {
+    height: 30px;
+    font-size: 13px;
+    color: red;
+    margin-left: 20px;
+    line-height: 30px;
+  }
+}
+
 body{
     background-image: image-url("background_image.jpg");
     background-attachment: fixed;

@@ -4,6 +4,7 @@ class Public::BooksController < ApplicationController
   end
 
   def show
+    @book = Book.find(params[:id])
   end
 
   def new
@@ -14,6 +15,12 @@ class Public::BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.save
     redirect_to public_books_index_path
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path
   end
 
   private

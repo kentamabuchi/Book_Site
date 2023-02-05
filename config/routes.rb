@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'books/index'
-    get 'books/show'
-    get 'books/new'
-    post 'books/create'
+  scope module: 'public' do
+    resources :books, only: [:index, :new, :create, :show, :update, :destroy]
   end
   devise_for :users
   root to: 'public/homes#top'

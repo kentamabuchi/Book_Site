@@ -16,7 +16,7 @@ $flex: (
   co: 'column'
 );
 
-@mixin flex($dir) {
+@mixin flex($dir){
   display: flex;
   @if $dir == ("ro" or "co"){
     flex: #{map-get($flex, $dir)}
@@ -24,5 +24,32 @@ $flex: (
   @else if $dir == "ce" {
     justify-content: #{map-get($flex, $dir)};
   }
+}
+
+@mixin btn($bColor: $mainColor_public){
+display: inline-block;
+text-decoration: none !important;
+width: 100px;
+height: 40px;
+color: $textColor_main;
+background-color: $bColor;
+text-align: center;
+line-height: 40px;
+border-radius: 10px;
+border: none;
+}
+
+@mixin page($bColor: $subColor_public){
+  width: 90%;
+  background-color: rgba($bColor, 0.8);
+  margin: 50px auto;
+  padding: 100px 0;
+}
+
+@mixin container{
+  width: 90%;
+  background-color: $wt;
+  margin: 0 auto;
+  padding: 50px
 }
 

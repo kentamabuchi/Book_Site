@@ -1,2 +1,10 @@
-<h1>Public::Books#show</h1>
-<p>Find me in app/views/public/books/show.html.erb</p>
+.book
+  .book__container
+    .book__contents
+      .book__items
+        .book__items__image
+        .book__items__list
+          .book__items__data= @book.name
+          .book__items__data= @book.writer
+          = link_to "削除", book_path, method: :delete
+
