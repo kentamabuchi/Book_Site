@@ -5,16 +5,18 @@
         .books__newCreate__text
           %p お探しの本がない場合はこちらから
         .books__newCreate__btn
-          =link_to "登録", public_books_new_path, class: "books__newCreate__link"
+          =link_to "登録", new_book_path, class: "books__newCreate__link"
       .books__newLineup
-        .books__newLineup__items
+        .books__newLineup__items.slider
           -@books.each do |book|
-            .books__newLineup__item
+            =link_to book_path(book), class: "books__newLineup__item" do
               .books__newLineup__item__name
                 =book.name
               .books__newLineup__item__writer
                 =book.writer
-      .books__recomend
-        .books__recomend__items
+      .books__recommend
+        .books__recommend__items
       .books__ranking
         .books__ranking__items
+
+  =javascript_include_tag "slider.js"

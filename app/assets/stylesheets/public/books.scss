@@ -4,13 +4,12 @@
 
 @import './color';
 @import './template';
+@import './slider';
 
 .books {
+  @include page();
   &__contents{
-    width: 90%;
-    background-color: $wt;
-    margin: 50px auto;
-    padding:  50px;
+    @include container;
   }
   &__newCreate{
     @include flex(ro);
@@ -35,17 +34,31 @@
       background-color: $subColor_public;
       color: $wt;
       padding: 10px 20px;
-      text-decoration: none !important;
+      text-decoration: none;
     }
   }
   &__newLineup {
+    @include flex(ce);
     height: 300px;
-    width: 90%;
     background-color: red;
     margin: 50px auto;
+    &__items {
+      height: 300px;
+      width: 100%;
+      padding: 50px;
+    }
+    &__item{
+      display: inline-block;
+      text-decoration: none;
+      height: 200px;
+      width: 250px;
+      background-color: $wt;
+      opacity: 0.5;
+      margin: 0 5px;
 
+    }
   }
-  &__recomend {
+  &__recommend {
     height: 300px;
     width: 90%;
     background-color: yellow;
@@ -56,5 +69,105 @@
     width: 90%;
     background-color: green;
     margin: 50px auto;
+  }
+}
+
+.book{
+  @include page();
+  &__container {
+    @include container;
+  }
+  &__items {
+    @include flex(ro);
+    justify-content: center;
+    &__image {
+      height: 300px;
+      width: 30%;
+      background-color: rgba($mainColor_public, 0.5);
+    }
+    &__list {
+      width: 30%;
+    }
+    &__data {
+      margin-left: 30px;
+    }
+  }
+}
+
+.bookNew {
+  @include page();
+  &__header {
+    width: 90%;
+    height: 50px;
+    background-color: $mainColor_public;
+    margin-bottom: 50px;
+    &__text {
+      color: $textColor_main;
+      padding-left: 50px;
+    }
+  }
+  &__container{
+    @include container;
+  }
+  &__contents{
+    @include flex(ce);
+  }
+  &__form {
+    display: inline-block;
+    width: 100%;
+    @include flex(co);
+    justify-content: center;
+    &__items {
+      border: 1px solid rgba($mainColor_public, 0.5);
+      border-bottom: none;
+    }
+    &__item{
+      @include flex(ro);
+      border-bottom: 1px solid rgba($mainColor_public, 0.5);
+      border-collapse: collapse;
+      &__tag {
+        width: 200px;
+        background-color: $mainColor_public;
+        color: $textColor_main;
+        text-align: right;
+        line-height: 50px;
+        border-right: 1px solid rgba($mainColor_public, 0.5);
+        &__attention {
+          display: inline-block;
+          width: 50px;
+          height: 30px;
+          font-size: 13px;
+          background-color: red;
+          text-align: center;
+          line-height: 30px;
+          border-radius: 10px;
+          margin: 0 10px;
+          &__none {
+            display: inline-block;
+            width: 50px;
+            margin: 0 10px;
+          }
+        }
+      }
+      &__textBox {
+        @include flex(ro);
+        width: 500px;
+        padding: 10px;
+        & input {
+          width: 300px;
+        }
+        & textarea {
+          height: 200px;
+          width: 400px;
+        }
+      }
+      &__btn {
+        @include btn();
+      }
+    }
+    &__btn {
+      margin-top: 10px;
+      text-align: center;
+    }
   }
 }

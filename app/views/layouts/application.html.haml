@@ -6,8 +6,11 @@
     %title BookSite
     = csrf_meta_tags
     = csp_meta_tag
+    %link{:rel => "stylesheet", :type => "text/css", :href => "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
   %body
     -if controller.action_name == 'top'
       .topHeader
@@ -28,7 +31,7 @@
                 %p.topHeader__nav__item__text
                   ABOUT
             %li.topHeader__nav__item
-              =link_to public_books_index_path, class: 'topHeader__nav__item__link' do
+              =link_to books_path, class: 'topHeader__nav__item__link' do
                 %p.topHeader__nav__item__text
                   HOME
             %li.topHeader__nav__item
@@ -53,7 +56,7 @@
                 %p.header__nav__item__text
                   ABOUT
             %li.header__nav__item
-              =link_to public_books_index_path, class: 'header__nav__item__link' do
+              =link_to books_path, class: 'header__nav__item__link' do
                 %p.header__nav__item__text
                   HOME
             %li.header__nav__item
@@ -63,3 +66,5 @@
 
 
     = yield
+    %script{type: "text/javascript",src: "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"}
+    =javascript_include_tag "validation.js"
