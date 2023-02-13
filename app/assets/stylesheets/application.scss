@@ -127,6 +127,10 @@ body{
   width: 100%;
   border-radius: 0 0 40% 40%;
   background-color: $mainColor_public;
+  &--admin {
+    @extend .header;
+    background-color: $mainColor_admin;
+  }
   &__logo {
     position: absolute;
     top: 50px;
@@ -159,6 +163,10 @@ body{
         background-color: $subColor_public;
         border-radius: 50%;
         text-align: center;
+        &--admin {
+          @extend .header__nav__item__link;
+          background-color: $subColor_admin;
+        }
       }
       &__text {
         margin: 35px 0;
