@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+
+
   scope module: 'admin' do
     get 'homes/top'
+    resources :categories, only: [:index, :create, :update, :destroy]
   end
   devise_for :admins, controllers: {
     sessions: 'admin/admins/sessions',
