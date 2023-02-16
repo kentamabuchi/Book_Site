@@ -12,7 +12,59 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body
-    -if controller.action_name == 'top'
+    - if @path.include?('admins/sign')
+      .header--admin
+
+        .header__logo
+          %h1.header__logo__text
+            \\EE/_Books
+
+        .header__nav
+          %ul.header__nav__list
+            %li.header__nav__item
+              =link_to root_path, class: 'header__nav__item__link--admin' do
+                %p.header__nav__item__text
+                  TOP
+            %li.header__nav__item
+              =link_to root_path, class: 'header__nav__item__link--admin' do
+                %p.header__nav__item__text
+                  ABOUT
+            %li.header__nav__item
+              =link_to books_path, class: 'header__nav__item__link--admin' do
+                %p.header__nav__item__text
+                  HOME
+            %li.header__nav__item
+              =link_to root_path, class: 'header__nav__item__link--admin' do
+                %p.header__nav__item__text
+                  ログイン
+
+    - elsif admin_signed_in?
+      .header--admin
+
+        .header__logo
+          %h1.header__logo__text
+            \\EE/_Books
+
+        .header__nav
+          %ul.header__nav__list
+            %li.header__nav__item
+              =link_to root_path, class: 'header__nav__item__link--admin' do
+                %p.header__nav__item__text
+                  TOP
+            %li.header__nav__item
+              =link_to root_path, class: 'header__nav__item__link--admin' do
+                %p.header__nav__item__text
+                  ABOUT
+            %li.header__nav__item
+              =link_to books_path, class: 'header__nav__item__link--admin' do
+                %p.header__nav__item__text
+                  HOME
+            %li.header__nav__item
+              =link_to destroy_admin_session_path, method: :delete, class: 'header__nav__item__link--admin' do
+                %p.header__nav__item__text
+                  ログアウト
+
+    - elsif controller.action_name == 'top'
       .topHeader
         .topHeader__topVisual
 

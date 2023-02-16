@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  scope module: 'admin' do
+    get 'homes/top'
+  end
+  devise_for :admins, controllers: {
+    sessions: 'admin/admins/sessions',
+    registrations: 'admin/admins/registrations'
+  }
   scope module: 'public' do
     resources :books, only: [:index, :new, :create, :show, :update, :destroy]
   end
