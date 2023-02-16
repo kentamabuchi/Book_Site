@@ -1,0 +1,57 @@
+// Place all the styles related to the admin/categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import './color';
+@import './template';
+
+.categories{
+  &__container {
+    @include page($subColor_admin);
+  }
+  &__create {
+    @include container;
+    &__heading {
+      @include heading($mainColor_admin)
+    }
+    &__form {
+      &__items{
+        margin-left: 100px;
+      }
+      &__item {
+        &__label {
+          display: inline-block;
+          height: 25px;
+          width: 100px;
+          background-color: $subColor_admin;
+          color: $textColor_main;
+          text-align: center;
+          line-height: 25px;
+        }
+        &__submit {
+          @include btn($subColor_public, 25px, 60px)
+        }
+      }
+    }
+  }
+  &__list {
+    @include container;
+    margin-top: 50px;
+    &__heading {
+      @include heading($mainColor_admin);
+    }
+    &__item {
+      margin-left: 100px;
+      &:nth-child(odd){
+        margin: 10px 0 10px 100px;
+      }
+      &__submit {
+        @include btn(orange, 25px, 60px);
+      }
+      &__delete {
+        @include btn(red, 25px, 60px);
+      }
+    }
+  }
+}
+

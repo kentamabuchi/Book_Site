@@ -26,19 +26,6 @@ $flex: (
   }
 }
 
-@mixin btn($bColor: $mainColor_public){
-display: inline-block;
-text-decoration: none !important;
-width: 100px;
-height: 40px;
-color: $textColor_main;
-background-color: $bColor;
-text-align: center;
-line-height: 40px;
-border-radius: 10px;
-border: none;
-}
-
 @mixin page($bColor: $subColor_public){
   width: 90%;
   background-color: rgba($bColor, 0.8);
@@ -52,4 +39,28 @@ border: none;
   margin: 0 auto;
   padding: 50px
 }
+
+@mixin heading($bColor: $mainColor_public) {
+  width: 90%;
+  height: 50px;
+  background-color: $bColor;
+  color: $textColor_main;
+  line-height: 50px;
+  padding-left: 50px;
+  margin-bottom: 50px;
+}
+
+@mixin btn($bColor: $mainColor_public, $height: 40px, $width: 100px){
+  display: inline-block;
+  text-decoration: none !important;
+  font-size: 16px;
+  height: $height;
+  width: $width;
+  color: $textColor_main;
+  background-color: $bColor;
+  text-align: center;
+  line-height: $height;
+  border-radius: 5px;
+  border: none;
+  }
 

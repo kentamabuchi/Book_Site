@@ -1,0 +1,21 @@
+.categories__container
+  .categories__contents
+    .categories__create
+      .categories__create__heading
+        %h2 カテゴリ登録
+      =form_with model: @category, url: categories_path, method: :post, id: 'category_anchor', local: true do |f|
+        .categories__create__form__items
+          .categories__create__form__item
+            =f.text_field :name, placeholder: "登録するカテゴリを入力"
+            =f.submit "登録", class: 'categories__create__form__item__submit'
+    .categories__list
+      .categories__list__heading
+        %h2 カテゴリ一覧
+
+      -@categories.each do |category|
+        .categories__list__item
+          =form_with model: category, url: category_path(category), method: :patch, local: true do |f|
+            = f.text_field :name, value: category.name
+            =f.submit "変更", class: 'categories__list__item__submit'
+            =link_to "削除", category_path(category), method: :delete, class: 'categories__list__item__delete'
+
