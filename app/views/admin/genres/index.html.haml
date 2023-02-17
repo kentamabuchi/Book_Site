@@ -1,0 +1,22 @@
+.genres__container
+  .genres__contents
+    .genre__create
+      .genres__create
+        .genres__create__heading
+          %h2 ジャンル登録
+        =form_with model: @genre, url: genres_path, method: :post, id: 'genre_anchor', local: true do |f|
+          .genres__create__form__items
+            .genres__create__form__item
+              =f.text_field :name, placeholder: "登録するジャンルを入力"
+              =f.submit "登録", class: 'genres__create__form__item__submit'
+      .genres__list
+        .genres__list__heading
+          %h2 ジャンル一覧
+
+        -@genres.each do |genre|
+          .genres__list__item
+            =form_with model: genre, url: genre_path(genre), method: :patch, local: true do |f|
+              = f.text_field :name, value: genre.name
+              =f.submit "変更", class: 'genres__list__item__submit'
+              =link_to "削除", genre_path(genre), method: :delete, class: 'genres__list__item__delete'      
+
