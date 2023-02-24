@@ -10,10 +10,16 @@
         .books__newLineup__items.slider
           -@books.each do |book|
             =link_to book_path(book), class: "books__newLineup__item" do
-              .books__newLineup__item__name
-                =book.name
-              .books__newLineup__item__writer
-                =book.writer
+              =attachment_image_tag book, :image, fallback: "no_image_book.jpeg", class: 'books__newLineup__item__image'
+              .books__newLineup__item__data
+                .books__newLineup__item__data__text
+                  %p=book.name
+                .books__newLineup__item__data__text
+                  %p=book.writer
+                .books__newLineup__item__data__text
+                  %p=book.category.name
+                .books__newLineup__item__data__text
+                  %p=book.genre.name
       .books__recommend
         .books__recommend__items
       .books__ranking

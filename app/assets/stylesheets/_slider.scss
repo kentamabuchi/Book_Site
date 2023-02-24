@@ -3,7 +3,7 @@
 .slider .slick-arrow {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
+  // border-radius: 50%;
   cursor: pointer;
   z-index: 1;
 }
@@ -13,8 +13,10 @@
 }
 .slider .slick-center {
   opacity: 1;
-  // margin: 0 5px;
   width: 300px;
+  & .books__newLineup__item__data {
+    width: 280px;
+  }
 }
 .slider .slick-dots {
   position: static;
