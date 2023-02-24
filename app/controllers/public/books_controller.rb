@@ -9,12 +9,16 @@ class Public::BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @categories = Category.all
+    @genres = Genre.all
   end
 
   def create
     @book = Book.new(book_params)
+    @categories = Category.all
+    @genres = Genre.all
     @book.save
-    redirect_to public_books_index_path
+    redirect_to books_path
   end
 
   def destroy

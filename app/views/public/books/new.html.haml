@@ -5,34 +5,87 @@
       %h1.bookNew__header__text 新規書籍登録
 
     .bookNew__contents
+      .bookNew__selectImage
+        = attachment_image_tag @book, :image, :fill , 300, 300,format: "jpg", fallback: "no_image_book.jpg", size: "300x300", id: 'newCurrentImage', class: 'bookNew__selectImage__data'
       .bookNew__form
         =form_with model: @book, url: books_path, id: "bookNewForm", method: :create, local: true do |f|
           %table.bookNew__form__items
+
             %tr.bookNew__form__item
               %th.bookNew__form__item__tag
-                %p
-                  書籍名
-                  %span.bookNew__form__item__tag__attention 必須
+                =f.label :image, "画像"
+                %span.bookNew__form__item__tag__attention__none
+              %td.bookNew__form__item__textBox
+                =f.attachment_field :image, direct: true, presigned: true, id: 'newImage'
+
+            %tr.bookNew__form__item
+              %th.bookNew__form__item__tag
+                =f.label :name, "書籍名"
+                %span.bookNew__form__item__tag__attention 必須
               %td.bookNew__form__item__textBox.validation__formBox
                 =f.text_field :name, class: "validation__form"
                 %p
+
             %tr.bookNew__form__item
               %th.bookNew__form__item__tag
-                %p
-                  作者
-                  %span.bookNew__form__item__tag__attention 必須
+                =f.label :writer, "作者"
+                %span.bookNew__form__item__tag__attention 必須
               %td.bookNew__form__item__textBox
                 =f.text_field :writer, class: "validation__form"
                 %p
+
             %tr.bookNew__form__item
               %th.bookNew__form__item__tag
-                %p
-                  内容
-                  %span.bookNew__form__item__tag__attention__none
+                =f.label :category_id, "カテゴリ"
+                %span.bookNew__form__item__tag__attention 必須
+              %td.bookNew__form__item__textBox
+                =f.collection_select(:category_id, @categories, :id, :name)
+
+            %tr.bookNew__form__item
+              %th.bookNew__form__item__tag
+                =f.label :genre_id, "ジャンル"
+                %span.bookNew__form__item__tag__attention 必須
+              %td.bookNew__form__item__textBox
+                =f.collection_select(:genre_id, @genres, :id, :name)
+
+            %tr.bookNew__form__item
+              %th.bookNew__form__item__tag
+                =f.label :content, "内容"
+                %span.bookNew__form__item__tag__attention__none
               %td.bookNew__form__item__textBox
                 =f.text_area :content
 
           .bookNew__form__btn
 
             =f.submit "登録", class: "bookNew__form__item__btn", id: "bookNewBtn"
+  :javascript
+    'use strict'; {
+
+      const image = document.getElementById('newImage');
+      const currentImage = document.getElementById('newCurrentImage');
+
+      document.addEventListener('turbolinks:load',()=>{
+
+        console.log(currentImage.value);
+
+        function readURL(input) {
+
+          if(image.value){
+            let reader = new FileReader();
+
+            reader.onload = function (e) {
+              currentImage.setAttribute('src', e.target.result);
+            }
+
+            reader.readAsDataURL(image.files[0]);
+          }
+        }
+
+        image.addEventListener('change', ()=>{
+          readURL(this);
+        });
+
+      });
+
+    }
   =javascript_include_tag "validation.js"

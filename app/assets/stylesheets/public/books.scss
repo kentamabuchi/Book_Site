@@ -6,6 +6,7 @@
 @import './template';
 @import './slider';
 
+
 .books {
   @include page();
   &__contents{
@@ -18,7 +19,6 @@
     text-align: center;
     margin: 0 50px 0 auto;
     padding: 5px 30px;
-    
     &__text {
       display: inline-block;
       color: $wt;
@@ -39,23 +39,44 @@
   }
   &__newLineup {
     @include flex(ce);
-    height: 300px;
-    background-color: red;
+    height: 270px;
+    background-color: $subColor_public;
     margin: 50px auto;
     &__items {
-      height: 300px;
+      height: 250px;
       width: 100%;
-      padding: 50px;
+      padding: 30px 50px;
     }
     &__item{
-      display: inline-block;
       text-decoration: none;
       height: 200px;
-      width: 250px;
+      width: 300px;
       background-color: $wt;
       opacity: 0.5;
       margin: 0 5px;
-
+      &:hover {
+        position: relative;
+      }
+      &__image {
+        height: 200px;
+        width: 280px;
+      }
+      &__data {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width:  230px;
+        background-color: rgba($wt, 0.6);
+        padding: 10px;
+        &__text {
+          border-bottom: 1px solid $borderColor_gray;
+          & p {
+            color: black;
+            padding: 2px 0;
+            margin-left: 20px;
+          }
+        }
+      }
     }
   }
   &__recommend {
@@ -82,14 +103,23 @@
     justify-content: center;
     &__image {
       height: 300px;
-      width: 30%;
-      background-color: rgba($mainColor_public, 0.5);
+        width: 30%;
+      &__data {
+        height: 300px;
+        width: 100%;
+      }
     }
     &__list {
       width: 30%;
-    }
-    &__data {
-      margin-left: 30px;
+      margin-left: 50px;
+      &__data {
+        border-bottom: 1px solid $borderColor_gray;
+        & p {
+          height: 40px;
+          line-height: 40px;
+          margin-left: 20px;
+        }
+      }
     }
   }
 }
@@ -112,9 +142,12 @@
   &__contents{
     @include flex(ce);
   }
+  &__selectImage {
+    width: 30%;
+  }
   &__form {
     display: inline-block;
-    width: 100%;
+    width: 70%;
     @include flex(co);
     justify-content: center;
     &__items {

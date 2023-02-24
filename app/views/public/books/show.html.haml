@@ -3,8 +3,15 @@
     .book__contents
       .book__items
         .book__items__image
+          =attachment_image_tag @book, :image, fallback: "no_image_book.jpeg", class:'book__items__image__data'
         .book__items__list
-          .book__items__data= @book.name
-          .book__items__data= @book.writer
+          .book__items__list__data
+            %p= @book.name
+          .book__items__list__data
+            %p= @book.writer
+          .book__items__list__data
+            %p= @book.category.name
+          .book__items__list__data
+            %p= @book.genre.name
           = link_to "削除", book_path, method: :delete
 
