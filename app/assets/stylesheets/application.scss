@@ -23,9 +23,17 @@
   font-family: "Toppan Bunkyu Midashi Gothic","凸版文久見出しゴシック";
 }
 
-img{
+img {
   padding: 0 !important;
   margin: 0 auto !important;
+}
+input[type = text] {
+  width: 300px;
+}
+
+textarea {
+  height: 200px;
+  width: 400px;
 }
 
 

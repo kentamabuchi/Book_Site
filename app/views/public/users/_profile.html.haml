@@ -1,0 +1,16 @@
+.profile__container
+  .profile__contents
+    .profile__items
+      .profile__items__list
+        = attachment_image_tag user, :image, :fill, 200, 200, fallback: "no_image_user.jpg", size: '200x200', class: 'profile__items__list__image'
+        .profile__items__list__data
+          %p.profile__items__list__text= user.name
+          - if user == current_user
+            .profile__items__list__action
+              = link_to "編集", profile_edit_path, class: 'profile__items__list__action__editBtn'
+              %p.profile__items__list__action__deleteBtn 削除
+      .profile__items__list__under
+        - if user.introduce.present?
+          %p.profile__items__list__introduce= user.introduce
+        - else
+          %p よろしくお願いします。

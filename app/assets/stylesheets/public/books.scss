@@ -125,7 +125,7 @@
 }
 
 .bookNew {
-  @include page();
+  @include page;
   &__header {
     width: 90%;
     height: 50px;
