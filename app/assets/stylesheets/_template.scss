@@ -11,17 +11,17 @@ $breakpoint: (
 }
 
 $flex: (
-  ce: 'center',
-  ro: 'row',
-  co: 'column'
+  ce: center,
+  ro: row,
+  co: column
 );
 
 @mixin flex($dir){
   display: flex;
-  @if $dir == ("ro" or "co"){
-    flex: #{map-get($flex, $dir)}
+  @if $dir == ro or $dir == co {
+    flex-direction: #{map-get($flex, $dir)}
   }
-  @else if $dir == "ce" {
+  @else if $dir == ce {
     justify-content: #{map-get($flex, $dir)};
   }
 }
@@ -62,5 +62,24 @@ $flex: (
   line-height: $height;
   border-radius: 5px;
   border: none;
-  }
+}
+
+@mixin tableBorder($color: $mainColor_public) {
+  border: 1px solid rgba($mainColor_public, 0.3);
+  border-collapse: collapse;
+}
+
+@mixin formTag_public($bColor: $mainColor_public, $height: 50px,) {
+  width: 200px;
+  height: $height;
+  background-color: $bColor;
+  color: $textColor_main;
+  text-align: center;
+  line-height: $height;
+}
+
+@mixin formTextBox($width: 500px, $padding: 10px) {
+  width: $width;
+  padding: $padding;
+}
 

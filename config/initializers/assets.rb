@@ -15,3 +15,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 Rails.application.config.assets.precompile += %w(slider.js)
 Rails.application.config.assets.precompile += %w(validation.js)
+Rails.application.config.assets.precompile += %w(form_image.js)

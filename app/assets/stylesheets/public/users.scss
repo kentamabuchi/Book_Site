@@ -1,0 +1,106 @@
+// Place all the styles related to the public/users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import './color';
+@import './template';
+
+.profile{
+  &__container {
+    @include page;
+  }
+  &__contents {
+    @include container;
+  }
+  &__items {
+    @include flex(co);
+    width: 80%;
+    margin: 0 auto;
+    &__list {
+      @include flex(ro);
+      &__image {
+        margin-left: auto;
+        border-radius:  50%;
+        object-fit: cover;
+      }
+      &__data {
+        width: 50%;
+        margin-right: auto;
+      }
+      &__text {
+        border-bottom: 1px solid $borderColor_gray;
+        padding-left: 30px;
+      }
+      &__action {
+        @include flex(ro);
+        margin-top: 30px;
+        &__editBtn {
+          @include btn($colorEdit, 30px, 60px);
+          margin-left: auto;
+        }
+        &__deleteBtn{
+          @include btn($colorDelete, 30px, 60px);
+          margin-left: 5px;
+        }
+      }
+      &__under {
+        display: inline-block;
+        height: 200px;
+        width: 80%;
+        padding: 10px;
+        margin: 50px auto 0;
+        border: 1px solid $borderColor_gray;
+      }
+    }
+  }
+}
+
+.profileEdit {
+  &__container {
+    @include page;
+  }
+  &__contents {
+    @include container;
+    @include flex(ro);
+  }
+  &__image {
+    width: 30%;
+    margin-left: auto;
+    text-align: center;
+    &__data {
+      object-fit: cover;
+    }
+    &__text {
+      @include formTag_public(gray, 30px);
+      display: inline-block;
+    }
+  }
+  &__form {
+    width: 70%;
+    margin-right: auto;
+    & table, th, td {
+      border: 1px solid rgba($subColor_public, 0.5);
+      border-collapse: collapse;
+    }
+    &__item {
+      &__tag {
+        @include formTag_public;
+        text-align: center;
+      }
+      &__textBox {
+        @include formTextBox;
+      }
+    }
+    &__action {
+      padding: 30px;
+      text-align: center;
+      &__cancel {
+        @include btn($colorDelete, 30px, 90px);
+      }
+      &__submit {
+        @include btn($subColor_public, 30px, 60px);
+      }
+    }
+  }
+}
+

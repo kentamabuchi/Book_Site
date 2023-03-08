@@ -87,9 +87,42 @@
                 %p.topHeader__nav__item__text
                   HOME
             %li.topHeader__nav__item
-              =link_to root_path, class: 'topHeader__nav__item__link' do
+              =link_to new_user_registration_path, class: 'topHeader__nav__item__link' do
+                %p.topHeader__nav__item__text
+                  新規登録
+            %li.topHeader__nav__item
+              =link_to new_user_session_path, class: 'topHeader__nav__item__link' do
                 %p.topHeader__nav__item__text
                   ログイン
+    -elsif user_signed_in?
+      .header
+
+        .header__logo
+          %h1.header__logo__text
+            \\EE/_Books
+
+        .header__nav
+          %ul.header__nav__list
+            %li.header__nav__item
+              =link_to root_path, class: 'header__nav__item__link' do
+                %p.header__nav__item__text
+                  TOP
+            %li.header__nav__item
+              =link_to root_path, class: 'header__nav__item__link' do
+                %p.header__nav__item__text
+                  ABOUT
+            %li.header__nav__item
+              =link_to books_path, class: 'header__nav__item__link' do
+                %p.header__nav__item__text
+                  HOME
+            %li.header__nav__item
+              =link_to mypage_path, class: 'header__nav__item__link' do
+                %p.header__nav__item__text
+                  マイページ
+            %li.header__nav__item
+              =link_to destroy_user_session_path, method: :delete, class: 'header__nav__item__link' do
+                %p.header__nav__item__text
+                  ログアウト
     -else
       .header
 
@@ -112,7 +145,11 @@
                 %p.header__nav__item__text
                   HOME
             %li.header__nav__item
-              =link_to root_path, class: 'header__nav__item__link' do
+              =link_to new_user_registration_path, class: 'header__nav__item__link' do
+                %p.header__nav__item__text
+                  新規登録
+            %li.header__nav__item
+              =link_to new_user_session_path, class: 'header__nav__item__link' do
                 %p.header__nav__item__text
                   ログイン
 
