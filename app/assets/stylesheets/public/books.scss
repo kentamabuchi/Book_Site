@@ -76,6 +76,15 @@
             margin-left: 20px;
           }
         }
+        &__rate {
+            display: inline-block;
+            padding: 2px 0;
+            margin-top: 2px;
+            margin-left: 20px;
+          & div img{
+            display: inline-block;
+          }
+        }
       }
     }
   }
@@ -101,15 +110,32 @@
   &__items {
     @include flex(ro);
     justify-content: center;
-    &__image {
+    &__leftItems {
       height: 300px;
         width: 30%;
-      &__data {
+      &__image {
         height: 300px;
         width: 100%;
       }
+      &__rate {
+        @include flex(ro);
+        margin-top: 10px;
+        &__star{
+          height: 30px;
+          line-height: 30px;
+        }
+        &__score {
+          font-size: 24px;
+          height: 30px;
+          display: inline-block;
+          line-height: 30px;
+          margin-left: 10px;
+          padding: 0 20px;
+          border-bottom: 1px solid $borderColor_gray;
+        }
+      }
     }
-    &__list {
+    &__rightItems {
       width: 30%;
       margin-left: 50px;
       &__data {
@@ -118,6 +144,98 @@
           height: 40px;
           line-height: 40px;
           margin-left: 20px;
+        }
+      }
+    }
+  }
+  &__reviews {
+    padding-top: 50px;
+    &__form {
+      margin-top: 50px;
+      &__heading {
+        width: 80%;
+        padding-left: 30px;
+        margin: 0 auto 30px;
+        border-bottom: 1px solid $borderColor_gray;
+      }
+      &__items {
+        width: 50%;
+        margin: 0 auto;
+      }
+      &__item {
+        @include flex(co);
+        margin-bottom: 20px;
+        &__label {
+          margin-bottom: 5px;
+        }
+        &__rate {
+          margin-bottom: 20px;
+        }
+        &__text {
+          width: 500px;
+        }
+      }
+      &__action {
+        &__btn {
+          @include formBtn($width: 500px);
+        }
+      }
+    }
+    &__comments {
+      margin-top: 30px;
+      &__item {
+        width: 60%;
+        margin: 0 auto 20px;
+        padding:20px;
+        border: 1px solid $borderColor_gray;
+        &__userIcon {
+          @include flex(ro);
+          margin-bottom: 20px;
+          &__image {
+            &__data {
+              border-radius: 50%;
+            }
+          }
+          &__name {
+            height: 50px;
+            line-height: 50px;
+            margin-left: 20px;
+          }
+        }
+        &__action {
+          margin-left: auto;
+          height: 50px;
+          line-height: 50px;
+          &__edit {
+            @include formBtn($colorEdit);
+          }
+          &__delete {
+            @include formBtn($colorDelete);
+          }
+        }
+        &__text {
+          height: 250px;
+        }
+        &__bottom {
+          @include flex(ro);
+          &__commentsIcon {
+            display: inline-block;
+            margin-left: 10px;
+            &__link {
+              text-decoration: none !important;
+              margin-left: 15px;
+            }
+            &__icon {
+              @include icon;
+            }
+            &__count {
+              display: inline-block;
+              color: black;
+            }
+          }
+        }
+        &__date {
+          margin-left: auto;
         }
       }
     }

@@ -1,0 +1,71 @@
+// Place all the styles related to the public/reviews controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import './color';
+@import './template';
+
+.reviewCommentPage{
+  @include page;
+  &__container{
+    @include container;
+  }
+  &__reviewItems {
+    width: 80%;
+    background-color: $light_gray;
+    padding: 30px;
+    margin: 0 auto;
+    &__userData {
+      @include flex(ro);
+      &__image {
+        margin: 0 !important;
+        border-radius: 50%;
+      }
+      &__name {
+        height: 50px;
+        line-height: 50px;
+        margin-left: 20px;
+      }
+    }
+    &__data {
+      margin-top: 10px;
+      &__comment {
+        min-height: 100px;
+        margin-top: 20px;
+
+      }
+    }
+    &__bottom {
+      @include flex(ro);
+      &__icon {
+        text-decoration: none !important;
+        display: inline-block;
+        color: blue;
+        margin-right: 10px;
+        &--none {
+          text-decoration: none !important;
+          display: inline-block;
+          color: black;
+          margin-right: 10px;
+        }
+      }
+      &__date {
+        margin-left: auto;
+      }
+    }
+  }
+  &__form {
+    @include flex(co);
+    width: 80%;
+    margin: 30px auto;
+    & textarea {
+      width: 90%;
+      margin: 0 auto;
+    }
+    & input {
+      width: 90%;
+      margin: 10px auto 0;
+    }
+  }
+}
+

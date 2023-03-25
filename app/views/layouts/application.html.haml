@@ -6,10 +6,12 @@
     %title BookSite
     = csrf_meta_tags
     = csp_meta_tag
+    %script{:crossorigin => "anonymous", :src => "https://kit.fontawesome.com/6b92dd2514.js"}
     %link{:rel => "stylesheet", :type => "text/css", :href => "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"}
     %link{:rel => "stylesheet", :type => "text/css", :href => "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag "raty.js"
 
   %body
     - if @path.include?('admins/sign')
@@ -152,6 +154,8 @@
               =link_to new_user_session_path, class: 'header__nav__item__link' do
                 %p.header__nav__item__text
                   ログイン
+
+
 
 
     = yield

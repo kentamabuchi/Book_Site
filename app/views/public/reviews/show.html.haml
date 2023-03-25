@@ -1,0 +1,40 @@
+.reviewCommentPage
+  .reviewCommentPage__container
+    .reviewCommentPage__reviewItems
+      .reviewCommentPage__reviewItems__userData
+        = attachment_image_tag @review.user, :image, :fill, 50, 50, fallback: 'no_image_user.jpg', size: '50x50', class: 'reviewCommentPage__reviewItems__userData__image'
+        .reviewCommentPage__reviewItems__userData__name= @review.user.name
+      .reviewCommentPage__reviewItems__data
+        .reviewCommentPage__reviewItems__data__rate
+          :javascript
+              $(".reviewCommentPage__reviewItems__data__rate").empty();
+              $(".reviewCommentPage__reviewItems__data__rate").raty({
+                starOn: "#{asset_path('star-on.png')}",
+                starOff: "#{asset_path('star-off.png')}",
+                starHalf: "#{asset_path('star-half.png')}",
+                half: true,
+                readOnly: true,
+                score: #{@review.rate},
+              });
+        .reviewCommentPage__reviewItems__data__comment= @review.comment
+        .reviewCommentPage__reviewItems__bottom
+          = render 'public/good_reviews/good_review', {book: @book, review: @review}
+          .reviewCommentPage__reviewItems__bottom__date= @review.created_at.strftime('%Y年%m月%d日 %H時%M分')
+    = form_with mode:@reviewItems, url: book_reviews_path(@review.book), method: :post, class: 'reviewCommentPage__form', local: true do |f|
+      = f.hidden_field :parent_id, :value => @review.id
+      = f.hidden_field :user_id, :value => current_user.id
+      = f.text_area :comment
+      = f.submit "コメントする"
+
+    -if @reviews.present?
+      - @reviews.each do |review|
+        .reviewCommentPage__reviewItems
+          .reviewCommentPage__reviewItems__userData
+            = attachment_image_tag review.user, :image, :fill, 50, 50, fallback: 'no_image_user.jpg', size: '50x50', class: 'reviewCommentPage__reviewItems__userData__image'
+            .reviewCommentPage__reviewItems__userData__name= review.user.name
+          .reviewCommentPage__reviewItems__data
+            .reviewCommentPage__reviewItems__data__comment= review.comment
+          .reviewCommentPage__reviewItems__bottom
+            = render 'public/good_reviews/good_review', {book: @book, review: review}
+            .reviewCommentPage__reviewItems__bottom__date= review.created_at.strftime('%Y年%m月%d日 %H時%M分')
+

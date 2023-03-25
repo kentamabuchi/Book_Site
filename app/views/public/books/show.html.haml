@@ -2,16 +2,96 @@
   .book__container
     .book__contents
       .book__items
-        .book__items__image
-          =attachment_image_tag @book, :image, fallback: "no_image_book.jpeg", class:'book__items__image__data'
-        .book__items__list
-          .book__items__list__data
+        .book__items__leftItems
+          =attachment_image_tag @book, :image, fallback: "no_image_book.jpeg", class:'book__items__leftItems__image'
+          .book__items__leftItems__rate
+            .book__items__leftItems__rate__star
+            :javascript
+              $(".book__items__leftItems__rate__star").empty();
+              $(".book__items__leftItems__rate__star").raty({
+                starOn: "#{asset_path('star-on.png')}",
+                starOff: "#{asset_path('star-off.png')}",
+                starHalf: "#{asset_path('star-half.png')}",
+                half: true,
+                readOnly: true,
+                score: #{@average_rate},
+              });
+            %p.book__items__leftItems__rate__score= "評価　#{@average_rate}"
+        .book__items__rightItems
+          .book__items__rightItems__data
             %p= @book.name
-          .book__items__list__data
+          .book__items__rightItems__data
             %p= @book.writer
-          .book__items__list__data
+          .book__items__rightItems__data
             %p= @book.category.name
-          .book__items__list__data
+          .book__items__rightItems__data
             %p= @book.genre.name
           = link_to "削除", book_path, method: :delete
+      .book__reviews
+        -if user_signed_in?
+          = form_with model: @review, url: book_reviews_path(@book), method: :post, class: 'book__reviews__form', local: true do |f|
+            %h3.book__reviews__form__heading レビュー
+            .book__reviews__form__items
+              .book__reviews__form__item
+                = f.label :rate, "評価", class: 'book__reviews__form__item__label'
+                .book__reviews__form__item__rate
+                  :javascript
+                    $('.book__reviews__form__item__rate').empty();
+                    $('.book__reviews__form__item__rate').raty({
+                      starOn: "#{asset_path('star-on.png')}",
+                      starOff: "#{asset_path('star-off.png')}",
+                      starHalf: "#{asset_path('star-half.png')}",
+                      scoreName: 'review[rate]',
+                      half: true,
+                    });
+                = f.label :comment, "コメント", class: 'book__reviews__form__item__label'
+                = f.text_area :comment, class: 'book__reviews__form__item__text'
+              .book__reviews__form__action
+                = f.submit "投稿", class: 'book__reviews__form__action__btn'
+
+
+
+        - if @reviews.nil?
+          .book__reviews__announce
+            %p.book__reviews__announce__text レビューはありません
+        -else
+          .book__reviews__comments#bookReview
+            - @reviews.each do |review|
+              - if review.parent_id.present? == false
+                .book__reviews__comments__item
+                  .book__reviews__comments__item__userIcon
+                    - if review.user == current_user
+                      .book__reviews__comments__item__userIcon__image
+                        = attachment_image_tag review.user, :image, :fill, 50, 50, fallback: "no_image_user", size: "50x50", class: 'book__reviews__comments__item__userIcon__image__data'
+                      .book__reviews__comments__item__userIcon__name= review.user.name
+
+                      .book__reviews__comments__item__action
+                        = link_to "編集", book_review_path(@book, review.id), method: :patch, class: 'book__reviews__comments__item__action__edit'
+                        = link_to "削除", book_review_path(@book, review.id), method: :delete, class: 'book__reviews__comments__item__action__delete'
+
+
+                    - else
+                      = link_to user_path(review.user) do
+                        = attachment_image_tag review.user, :image, :fill, 50, 50, fallback: "no_image_user", size: "50x50", class: 'book__reviews__comments__item__userIcon__image__data'
+                      .book__reviews__comments__item__userIcon__name= review.user.name
+
+                  %div{class: "book__reviews__comments__item__rate#{review.id}"}
+                    :javascript
+                      $(".book__reviews__comments__item__rate#{review.id}").empty();
+                      $(".book__reviews__comments__item__rate#{review.id}").raty({
+                        starOff:  "#{asset_path('star-off.png')}",
+                        starOn : "#{asset_path('star-on.png')}",
+                        starHalf: "#{asset_path('star-half.png')}",
+                        half: true,
+                        readOnly: true,
+                        score: #{review.rate}
+                      });
+                  .book__reviews__comments__item__text= review.comment
+                  .book__reviews__comments__item__bottom
+                    = render 'public/good_reviews/good_review', {book: @book, review: review}
+                    = link_to book_review_path(@book, review.id), method: :get, class: 'book__reviews__comments__item__bottom__commentsIcon__link' do
+                      %i.far.fa-comment.book__reviews__comments__item__bottom__commentsIcon__icon
+                      .book__reviews__comments__item__bottom__commentsIcon__count= review.replies.count
+
+                    .book__reviews__comments__item__date= review.created_at.strftime('%Y年%m月%d日 %H時%M分')
 
