@@ -14,7 +14,11 @@ Rails.application.routes.draw do
 
   scope module: 'public' do
     resources :homes, only: [:top, :about]
-    resources :books, only: [:index, :new, :create, :show, :update, :destroy]
+    resources :books, only: [:index, :new, :create, :show, :update, :destroy] do
+      resources :reviews, only: [:show, :create, :update, :destroy] do
+        resource :good_reviews, only: [:create, :destroy]
+      end
+    end
     get 'mypage' => 'users#mypage', as: 'mypage'
     get 'profile/edit' => 'users#edit', as: 'profile_edit'
     patch 'profile/edit' => 'users#update'

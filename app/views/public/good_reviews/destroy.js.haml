@@ -1,0 +1,1 @@
+$(".goodReview__#{@review.id}").html("#{j(render partial: 'public/good_reviews/good_review', locals: { book: @book, review: @review })}");

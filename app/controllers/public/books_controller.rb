@@ -1,10 +1,19 @@
 class Public::BooksController < ApplicationController
+  protect_from_forgery
+
   def index
     @books = Book.all
   end
 
   def show
     @book = Book.find(params[:id])
+    @reviews = @book.reviews.all.reverse_order
+    @review = Review.new
+    if @book.reviews.blank?
+      @average_rate = 0
+    else
+      @average_rate = @book.reviews.average(:rate).round(1)
+    end
   end
 
   def new
@@ -15,8 +24,6 @@ class Public::BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    @categories = Category.all
-    @genres = Genre.all
     @book.save
     redirect_to books_path
   end
