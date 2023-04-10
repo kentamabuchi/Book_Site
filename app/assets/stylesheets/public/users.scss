@@ -5,31 +5,55 @@
 @import './color';
 @import './template';
 
-.profile{
+
+.userPage{
+  @include page;
   &__container {
-    @include page;
-  }
-  &__contents {
     @include container;
   }
+}
+
+.profile {
   &__items {
-    @include flex(co);
+    @include flex(ro);
     width: 80%;
     margin: 0 auto;
-    &__list {
-      @include flex(ro);
+    &__leftItem {
+      @include flex(co);
+      width: 30%;
+      margin-left: auto;
       &__image {
-        margin-left: auto;
-        border-radius:  50%;
+        display: inline-block;
+        margin: 0 auto;
+        border-radius: 50%;
         object-fit: cover;
       }
-      &__data {
-        width: 50%;
-        margin-right: auto;
+      &__follow {
+        @include flex(ro);
+        &__link {
+          text-decoration: none !important;
+          width: 50%;
+          
+          margin: 0 auto;
+        }
+        &__counts {
+          height: 50px;
+          text-align: center;
+          line-height: 50px;
+        }
+      }
+    }
+    &__rightItem {
+      width: 50%;
+      margin-right: auto;
+      &__nameBox {
+        @include flex(ro);
       }
       &__text {
+        width: 300px;
         border-bottom: 1px solid $borderColor_gray;
         padding-left: 30px;
+        margin-right: auto;
       }
       &__action {
         @include flex(ro);
@@ -43,17 +67,17 @@
           margin-left: 5px;
         }
       }
-      &__under {
-        display: inline-block;
-        height: 200px;
-        width: 80%;
-        padding: 10px;
-        margin: 50px auto 0;
-        border: 1px solid $borderColor_gray;
-      }
+    }
+    &__underItem {
+      height: 200px;
+      width: 80%;
+      padding: 10px;
+      margin: 50px auto 0;
+      border: 1px solid $borderColor_gray;
     }
   }
 }
+
 
 .profileEdit {
   &__container {

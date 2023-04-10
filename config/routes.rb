@@ -14,15 +14,28 @@ Rails.application.routes.draw do
 
   scope module: 'public' do
     resources :homes, only: [:top, :about]
+
     resources :books, only: [:index, :new, :create, :show, :update, :destroy] do
       resources :reviews, only: [:show, :create, :update, :destroy] do
         resource :good_reviews, only: [:create, :destroy]
       end
     end
+
     get 'mypage' => 'users#mypage', as: 'mypage'
+    get 'mypage/follow' => 'relationships#my_follow', as: 'mypage_follow'
+    get 'mygege/follower' => 'relationships#my_follower', as: 'mypage_follower'
+
     get 'profile/edit' => 'users#edit', as: 'profile_edit'
     patch 'profile/edit' => 'users#update'
-    resources :users, only: [:show]
+
+    post 'review/:parent_id/reply' => 'reviews#reply', as: 'reply'
+
+    get 'user/:id/follow' => 'relationships#follow', as: 'follow'
+    get 'user/:id/follower' => 'relationships#follower', as: 'follower'
+
+    resources :users, only: [:show] do
+      resource :relationships, only: [:create, :destroy]
+    end
   end
 
   scope module: 'admin' do

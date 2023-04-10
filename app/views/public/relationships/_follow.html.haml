@@ -1,0 +1,35 @@
+.relationshipPage
+  .relationshipPage__container
+    .follow
+      - follows.each do |follow|
+        .follow__items
+          .follow__items__top
+            -if follow.id == current_user.id
+              = link_to mypage_path do
+                = attachment_image_tag follow, :image, :fill, 50, 50, fallback: 'no_image_user.jpg', size: '50x50', class: "follow__items__top__image"
+            - else
+              = link_to user_path(follow) do
+                = attachment_image_tag follow, :image, :fill, 50, 50, fallback: 'no_image_user.jpg', size: '50x50', class: "follow__items__top__image"
+            %p.follow__items__top__name= follow.name
+            .follow__items__top__followIcon
+              -if follow != current_user
+                = render 'public/relationships/follow_icon', {user: follow}
+                - if follow.relationships.find_by(followed_id: current_user.id).present?
+                  %p.follow__items__top__eachFollow フォローされています
+          .follow__items__bottom
+            - if follow.introduce
+              %p.follow__items__bottom__introduce= follow.introduce
+            - else
+              %p.follow__items__bottom__introduce よろしくお願いします。
+            .follow__items__bottom__book
+              -if follow.reviews.where(parent_id: nil).exists?
+                %p.follow__items__bottom__tag 最近レビューした本
+                - follow_reviews = follow.reviews.where(parent_id: nil).select(:id, :book_id).reverse_order
+                - current_reviews = []
+
+                - follow_reviews.each do |follow_review|
+                  -if current_reviews.empty? || !current_reviews.find{ |n| n[:book_id] == follow_review.book_id}.present?
+                    - current_reviews.push(follow_review)
+                    =link_to book_review_path(follow_review.book_id, follow_review.id), class: "follow__items__bottom__book__link" do
+                      = follow_review.book.name
+

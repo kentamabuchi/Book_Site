@@ -1,10 +1,15 @@
 class Public::UsersController < ApplicationController
   def mypage
     @user = User.find(current_user.id)
+    @follow = @user.followings
+    @follower = @user.followers
   end
 
   def show
     @user = User.find(params[:id])
+    @relationship = Relationship.find_by(followed_id: current_user.id, follower_id: @user.id)
+    @follow = @user.followings
+    @follower = @user.followers
   end
 
   def edit
