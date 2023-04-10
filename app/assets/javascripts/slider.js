@@ -12,9 +12,8 @@
         centerPadding: "10%",
         dots: true,
         variableWidth: true,
-        // fade: true,
         slidesToShow: 3,
-        speed: 400,
+        speed: 400
       });
     });
   }else{
@@ -27,9 +26,8 @@
         centerPadding: "10%",
         dots: true,
         variableWidth: true,
-        // fade: true,
         slidesToShow: 1,
-        speed: 400,
+        speed: 400
       });
     });
   }

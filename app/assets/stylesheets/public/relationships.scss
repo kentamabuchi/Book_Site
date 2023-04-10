@@ -1,0 +1,92 @@
+// Place all the styles related to the public/relationships controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import './color';
+@import './template';
+
+.followIcon {
+  text-decoration: none !important;
+  width: 100px;
+  background-color: $subColor_public;
+  color: $textColor_main;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  &__none {
+    @extend .followIcon;
+    background-color: $borderColor_gray;
+  }
+}
+
+.relationshipPage {
+  @include page;
+  &__container {
+    @include container;
+  }
+}
+
+.follow {
+  &__items {
+    width: 100%;
+    padding: 30px;
+    margin: 0 auto;
+    &__top {
+      @include flex(ro);
+      &__image {
+        display: inline-block;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 50%;
+      }
+      &__name {
+        width: 300px;
+        height: 30px;
+        padding-left: 10px;
+        margin-left: 20px;
+        margin-right: auto;
+        line-height: 30px;
+        border-bottom: 1px solid $borderColor_gray;
+      }
+      &__followIcon {
+        @include flex(co);
+      }
+      &__eachFollow {
+        width: 200px;
+        text-align: center;
+        background-color: $borderColor_gray;
+        color: $textColor_main;
+        margin-top: 5px;
+        border-radius: 5px;
+      }
+    }
+    &__bottom {
+      margin-top: 10px;
+      &__introduce {
+        width: 80%;
+        min-height: 100px;
+        padding: 10px;
+      }
+      &__tag {
+        padding: 0 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid $borderColor_gray;
+      }
+      &__book {
+        text-align: center;
+        &__link {
+          text-decoration: none !important;
+          display: inline-block;
+          width: 300px;
+          height: 30px;
+          background-color: $mainColor_public;
+          color: $textColor_main;
+          margin: 5px;
+          line-height: 30px;
+          text-align: center;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+}

@@ -9,23 +9,20 @@ class Public::ReviewsController < ApplicationController
   end
 
   def create
-    if params[:parent_id].present?
-      @review = current_user.reviews.new(reply_params)
-      @review.book_id = params[:book_id]
-      if @review.rate.nil?
-        @review.rate = 0
-      end
-      @review.save
-      redirect_to book_reviews_path(@review.book_id, @review)
-    else
-      @review = current_user.reviews.new(review_params)
-    end
+    @review = current_user.reviews.new(review_params)
     @review.book_id = params[:book_id]
     if @review.rate.nil?
       @review.rate = 0
     end
     @review.save
     redirect_to book_path(params[:book_id], anchor: 'bookReview')
+  end
+
+  def reply
+    @review = Review.find(params[:parent_id])
+    @reply = current_user.reviews.new(review_params)
+    @reply.save
+    redirect_to book_review_path(@review.book_id, @review)
   end
 
   def update
@@ -44,30 +41,13 @@ class Public::ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:user_id,
-                  :book_id,
-                  :parent_id,
-                  :comment,
-                  :rate,
-                  :is_actiive,
-                  :created_at,
-                  :updated_at)
+                                   :book_id,
+                                   :parent_id,
+                                   :comment,
+                                   :rate,
+                                   :is_actiive,
+                                   :created_at,
+                                   :updated_at)
   end
 
-  def reply_params
-    params.permit(:user_id,
-                  :book_id,
-                  :parent_id,
-                  :comment,
-                  :rate,
-                  :is_actiive,
-                  :created_at,
-                  :updated_at)
-  end
-
-  def good_review_params
-    params.require(:good_review).permit(:user_id,
-                                        :review_id,
-                                        :created_at,
-                                        :updated_at)
-  end
 end

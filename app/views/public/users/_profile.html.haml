@@ -1,16 +1,34 @@
-.profile__container
-  .profile__contents
+.userPage
+  .userPage__container
+
     .profile__items
-      .profile__items__list
-        = attachment_image_tag user, :image, :fill, 200, 200, fallback: "no_image_user.jpg", size: '200x200', class: 'profile__items__list__image'
-        .profile__items__list__data
-          %p.profile__items__list__text= user.name
-          - if user == current_user
-            .profile__items__list__action
-              = link_to "編集", profile_edit_path, class: 'profile__items__list__action__editBtn'
-              %p.profile__items__list__action__deleteBtn 削除
-      .profile__items__list__under
-        - if user.introduce.present?
-          %p.profile__items__list__introduce= user.introduce
-        - else
-          %p よろしくお願いします。
+
+      .profile__items__leftItem
+        = attachment_image_tag user, :image, :fill, 200, 200, fallback: "no_image_user.jpg", size: '200x200', class: 'profile__items__leftItem__image'
+        .profile__items__leftItem__follow
+          - if @user == current_user
+            = link_to mypage_follow_path, class: 'profile__items__leftItem__follow__link' do
+              %p.profile__items__leftItem__follow__counts= "フォロー　#{@follow.count}"
+            = link_to mypage_follower_path, class: 'profile__items__leftItem__follow__link' do
+              %p.profile__items__leftItem__follow__counts= "フォロワー　#{@follower.count}"
+          - else
+            = link_to follow_path(@user), class: 'profile__items__leftItem__follow__link' do
+              %p.profile__items__leftItem__follow__counts= "フォロー　#{@follow.count}"
+            = link_to follower_path(@user), class: 'profile__items__leftItem__follow__link' do
+              %p.profile__items__leftItem__follow__counts= "フォロワー　#{@follower.count}"
+
+      .profile__items__rightItem
+        .profile__items__rightItem__nameBox
+          %p.profile__items__rightItem__text= user.name
+          - if user != current_user
+            = render "public/relationships/follow_icon", {user: user}
+        - if user == current_user
+          .profile__items__rightItem__action
+            = link_to "編集", profile_edit_path, class: 'profile__items__rightItem__action__editBtn'
+            %p.profile__items__rightItem__action__deleteBtn 削除
+
+    .profile__items__underItem
+      - if user.introduce.present?
+        %p.profile__items__underItem__introduce= user.introduce
+      - else
+        %p よろしくお願いします。
