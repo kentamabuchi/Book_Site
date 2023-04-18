@@ -5,7 +5,7 @@
         .books__newCreate__text
           %p お探しの本がない場合はこちらから
         .books__newCreate__btn
-          =link_to "登録", new_book_path, class: "books__newCreate__link"
+          =link_to "登録", new_book_path(anchor: 'pageTop'), class: "books__newCreate__link"
       .books__newLineup
         .books__newLineup__items.slider
           -@books.each do |book|

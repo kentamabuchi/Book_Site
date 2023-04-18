@@ -205,19 +205,25 @@ body{
 .form {
   &__header {
     @include heading;
+    margin-bottom: 50px;
     &--admin {
       @include heading($mainColor_admin);
+      margin-bottom: 50px;
     }
   }
   &__contents {
     @include flex(ce);
+    &--twoSide {
+      @include flex(ro);
+    }
+  }
+  &__image {
+    width: 30%;
   }
   &__items {
     @include form_table;
-    margin-top: 50px;
     &--admin {
       @include form_table($borderColor_admin);
-      margin-top: 50px;
     }
   }
   &__item {
@@ -231,17 +237,33 @@ body{
         @include form_th($mainColor_admin, $borderColor_admin);
       }
     }
+    &__required {
+      display: inline-block;
+      width: 50px;
+      height: 30px;
+      font-size: 13px;
+      background-color: red;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 10px;
+      margin: 0 10px;
+      &--none {
+        width: 50px;
+        margin: 0 10px;
+      }
+    }
     &__textarea {
       @include form_td
     }
   }
   &__checkBox {
     text-align: center;
-    margin: 10px 0;
+    margin-top: 10px;
   }
   &__action {
     width: 100%;
     text-align: center;
+    margin-top: 20px;
     &__btn {
       @include formBtn;
       &--admin {
