@@ -1,25 +1,41 @@
-%h2 新規登録
-= form_with model: @user, url: user_registration_path, method: :post, local: true do |f|
-  = render "public/shared/error_messages", resource: resource
-  .field
-    = f.label :name, "ニックネーム"
-    %br/
-    = f.text_field :name
-  .field
-    = f.label :email, "メールアドレス"
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password, "パスワード"
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} 文字以上)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation, "パスワード(確認用)"
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "登録"
-= render "public/shared/links"
+.publicPage
+  .publicPage__container
+
+    .form__header
+      %h2.form__header__text 新規登録
+
+    .form__contents
+      = form_with model: @user, url: user_registration_path, method: :post, local: true do |f|
+        %table.form__items
+          = render "public/shared/error_messages", resource: resource
+          %tr.form__item
+            %th.form__item__label
+              = f.label :name, "ニックネーム"
+            %td.form__item__textarea
+              = f.text_field :name
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :email, "メールアドレス"
+            %td.form__item__textarea
+              = f.email_field :email, autofocus: true, autocomplete: "email"
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :password, "パスワード"
+              - if @minimum_password_length
+                %em
+                  (#{@minimum_password_length} 文字以上)
+            %td.form__item__textarea
+              = f.password_field :password, autocomplete: "new-password"
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :password_confirmation, "パスワード(確認用)"
+            %td.form__item__textarea
+              = f.password_field :password_confirmation, autocomplete: "new-password"
+
+        .form__action
+          = f.submit "登録", class: "form__action__btn"
+    .form__navLink
+      = render "public/shared/links"
