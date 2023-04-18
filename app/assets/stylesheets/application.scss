@@ -63,7 +63,7 @@ body{
   border: 25px solid $mainColor_public;
   margin: 50px auto;
   @include mp(lg){
-    height: 500px;
+    height: 600px;
     background: linear-gradient(to left, $mainColor_public 70%, $subColor_public 30%);
   @include flex(ro);
   }
@@ -76,7 +76,7 @@ body{
     position: absolute;
     bottom: 25px;
     right: 25px;
-    height: 400px;
+    height: 500px;
     background-image: image-url("top_image.jpg");
     background-size: cover;
     @include mp(lg){
@@ -183,6 +183,69 @@ body{
       }
       &__text {
         margin: 35px 0;
+      }
+    }
+  }
+}
+
+.publicPage {
+  @include page;
+  &__container {
+    @include container;
+  }
+}
+
+.adminPage {
+  @include page($subColor_admin);
+  &__container {
+    @include container;
+  }
+}
+
+.form {
+  &__header {
+    @include heading;
+    &--admin {
+      @include heading($mainColor_admin);
+    }
+  }
+  &__contents {
+    @include flex(ce);
+  }
+  &__items {
+    @include form_table;
+    margin-top: 50px;
+    &--admin {
+      @include form_table($borderColor_admin);
+      margin-top: 50px;
+    }
+  }
+  &__item {
+    @include form_tr;
+    &--admin {
+      @include form_tr($borderColor_admin);
+    }
+    &__label {
+      @include form_th;
+      &--admin {
+        @include form_th($mainColor_admin, $borderColor_admin);
+      }
+    }
+    &__textarea {
+      @include form_td
+    }
+  }
+  &__checkBox {
+    text-align: center;
+    margin: 10px 0;
+  }
+  &__action {
+    width: 100%;
+    text-align: center;
+    &__btn {
+      @include formBtn;
+      &--admin {
+        @include formBtn($subColor_admin);
       }
     }
   }

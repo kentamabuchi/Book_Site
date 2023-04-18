@@ -1,21 +1,31 @@
-%h2 ログイン
-= form_with model: @admin, url: admin_session_path, id: "adminSignInForm", local: true do |f|
+.adminPage
+  .adminPage__container
 
-  .field
-    = f.label :email, "メールアドレス"
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email", class: "validation__form"
-    %p
-  .field
-    = f.label :password, "パスワード"
-    %br/
-    = f.password_field :password, autocomplete: "current-password",class: "validation__form"
-    %p
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me, "ログインしたままにする"
-  .actions
-    = f.submit "ログイン", id: "adminSignInBtn"
-= render "admin/admins/shared/links"
+    .form__header--admin
+      %h2.form__header__text ログイン
+
+    .form__contents
+      = form_with model: @admin, url: admin_session_path, id: "adminSignInForm", local: true do |f|
+        %table.form__items--admin
+
+          %tr.form__item--admin
+            %th.form__item__label--admin
+              = f.label :email, "メールアドレス"
+            %td.form__item__textarea
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: "validation__form"
+              %p
+          %tr.form__item--admin
+            %th.form__item__label--admin
+              = f.label :password, "パスワード"
+            %td.form__item__textarea
+              = f.password_field :password, autocomplete: "current-password",class: "validation__form"
+              %p
+        - if devise_mapping.rememberable?
+          .form__checkBox
+            = f.check_box :remember_me
+            = f.label :remember_me, "ログインしたままにする"
+
+        .form__action
+          = f.submit "ログイン", id: "adminSignInBtn", class: "form__action__btn--admin"
+    = render "admin/admins/shared/links"
 

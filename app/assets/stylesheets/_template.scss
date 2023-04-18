@@ -26,9 +26,9 @@ $flex: (
   }
 }
 
-@mixin page($bColor: $subColor_public){
+@mixin page($bgColor: $subColor_public){
   width: 90%;
-  background-color: rgba($bColor, 0.8);
+  background-color: rgba($bgColor, 0.8);
   margin: 50px auto;
   padding: 100px 0;
 }
@@ -49,14 +49,14 @@ $flex: (
 }
 
 
-@mixin heading($bColor: $mainColor_public) {
+@mixin heading($bgColor: $mainColor_public) {
   width: 90%;
   height: 50px;
-  background-color: $bColor;
+  background-color: $bgColor;
   color: $textColor_main;
   line-height: 50px;
   padding-left: 50px;
-  margin-bottom: 50px;
+  margin: 0 auto;
 }
 
 @mixin btn($bColor: $mainColor_public, $height: 40px, $width: 100px){
@@ -73,7 +73,31 @@ $flex: (
   border: none;
 }
 
-@mixin formBtn($bColor: $subColor_public, $height: 30px, $width: 60px){
+@mixin form_table($bdColor: $borderColor_public) {
+  border-collapse: collapse;
+  border: 1px solid $bdColor;
+  border-bottom: none;
+}
+
+@mixin form_tr($bdColor: $borderColor_public) {
+  border-bottom: 1px solid $bdColor;
+}
+
+@mixin form_th($bgColor: $mainColor_public,$bdColor: $borderColor_public, $width: 200px){
+  width: $width;
+  background-color: $bgColor;
+  color: $textColor_main;
+  text-align: right;
+  padding: 10px;
+  border-right: 1px solid $bdColor;
+}
+
+@mixin form_td($width: 400px) {
+  width: $width;
+  padding: 10px;
+}
+
+@mixin formBtn($bColor: $subColor_public, $height: 30px, $width: 80px){
   display: inline-block;
   text-decoration: none !important;
   font-size: 16px;
