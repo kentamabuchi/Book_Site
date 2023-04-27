@@ -49,6 +49,9 @@ textarea {
     line-height: 30px;
   }
 }
+.hidden {
+  display: none;
+}
 
 body{
     background-image: image-url("background_image.jpg");
@@ -213,12 +216,17 @@ body{
   }
   &__contents {
     @include flex(ce);
-    &--twoSide {
-      @include flex(ro);
-    }
   }
   &__image {
     width: 30%;
+    text-align: center;
+    &__data {
+      object-fit: cover;
+    }
+    &__text {
+      @include formTag_public(gray, 30px);
+      margin: 0 auto;
+    }
   }
   &__items {
     @include form_table;
@@ -267,7 +275,10 @@ body{
     &__btn {
       @include formBtn;
       &--admin {
-        @include formBtn($subColor_admin);
+        @include formBtn($colorSubmit);
+      }
+      &--cancel {
+        @include formBtn($colorDelete);
       }
     }
   }

@@ -70,14 +70,20 @@
               =link_to books_path, class: 'topHeader__nav__item__link' do
                 %p.topHeader__nav__item__text
                   HOME
-            %li.topHeader__nav__item
-              =link_to new_user_registration_path, class: 'topHeader__nav__item__link' do
-                %p.topHeader__nav__item__text
-                  新規登録
-            %li.topHeader__nav__item
-              =link_to new_user_session_path, class: 'topHeader__nav__item__link' do
-                %p.topHeader__nav__item__text
-                  ログイン
+            -if user_signed_in?
+              %li.topHeader__nav__item
+                =link_to destroy_user_session_path, class: 'topHeader__nav__item__link' do
+                  %p.topHeader__nav__item__text
+                    ログアウト
+            -else
+              %li.topHeader__nav__item
+                =link_to new_user_registration_path, class: 'topHeader__nav__item__link' do
+                  %p.topHeader__nav__item__text
+                    新規登録
+              %li.topHeader__nav__item
+                =link_to new_user_session_path, class: 'topHeader__nav__item__link' do
+                  %p.topHeader__nav__item__text
+                    ログイン
     -else
       .header
 
