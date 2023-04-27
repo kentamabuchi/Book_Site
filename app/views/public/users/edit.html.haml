@@ -1,34 +1,37 @@
-.profileEdit__container
-  .profileEdit__contents
-    .profileEdit__image
-      = attachment_image_tag @user, :image, :fill, 250, 250, fallback: 'no_image_user.jpg', size: '250x250', class: 'profileEdit__image__data', id: 'previewImage'
-      %p.profileEdit__image__text プレビュー
-    = form_with model: @user, url: profile_edit_path, method: :patch,class: 'profileEdit__form', local: true do |f|
-      %table.profileEdit__form__items
+.publicPage
+  .publicPage__container
+    .form__contents
+      .form__image
+        = attachment_image_tag @user, :image, :fill, 250, 250, fallback: 'no_image_user.jpg', size: '250x250', class: 'form__image__data', id: 'previewImage'
+        %p.form__image__text プレビュー
+      = form_with model: @user, url: profile_edit_path, method: :patch,class: 'profileEdit__form', local: true do |f|
+        %table.form__items
 
-        %tr.profileEdit__form__item
-          %th.profileEdit__form__item__tag= f.label :image, "画像"
-          %td.profileEdit__form__item__textBox=f.attachment_field :image, direct: true, presigned: true, id: 'selectImage'
+          %tr.form__item
+            %th.form__item__label
+              = f.label :image, "画像"
+            %td.form__item__textarea
+              = f.attachment_field :image, direct: true, presigned: true, id: 'selectImage'
 
-        %tr.profileEdit__form__item
-          %th.profileEdit__form__item__tag
-            = f.label :name, "名前"
-          %td.profileEdit__form__item__textBox
-            = f.text_field :name
+          %tr.form__item
+            %th.form__item__label
+              = f.label :name, "名前"
+            %td.form__item__textarea
+              = f.text_field :name
 
-        %tr.profileEdit__form__item
-          %th.profileEdit__form__item__tag
-            = f.label :email, "メールアドレス"
-          %td.profileEdit__form__item__textBox
-            = f.text_field :email
+          %tr.form__item
+            %th.form__item__label
+              = f.label :email, "メールアドレス"
+            %td.form__item__textarea
+              = f.text_field :email
 
-        %tr.profileEdit__form__item
-          %th.profileEdit__form__item__tag
-            = f.label :introduce, "自己紹介"
-          %td.profileEdit__form__item__textBox
-            = f.text_area :introduce
+          %tr.form__item
+            %th.form__item__label
+              = f.label :introduce, "自己紹介"
+            %td.form__item__textarea
+              = f.text_area :introduce
 
-      .profileEdit__form__action
-        =link_to "キャンセル", mypage_path, class: 'profileEdit__form__action__cancel'
-        =f.submit "変更",class: 'profileEdit__form__action__submit'
-  = javascript_include_tag 'form_image.js'
+        .form__action
+          =link_to "キャンセル", mypage_path(anchor: 'pageTop'), class: 'form__action__btn--cancel'
+          =f.submit "変更",class: 'form__action__btn'
+    = javascript_include_tag 'form_image.js'

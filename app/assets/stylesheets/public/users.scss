@@ -14,117 +14,152 @@
 }
 
 .profile {
-  &__items {
-    @include flex(ro);
-    width: 80%;
-    margin: 0 auto;
-    &__leftItem {
-      @include flex(co);
-      width: 30%;
-      margin-left: auto;
-      &__image {
-        display: inline-block;
-        margin: 0 auto;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-      &__follow {
-        @include flex(ro);
-        &__link {
-          text-decoration: none !important;
-          width: 50%;
-          
-          margin: 0 auto;
-        }
-        &__counts {
-          height: 50px;
-          text-align: center;
-          line-height: 50px;
-        }
-      }
-    }
-    &__rightItem {
-      width: 50%;
-      margin-right: auto;
-      &__nameBox {
-        @include flex(ro);
-      }
-      &__text {
-        width: 300px;
-        border-bottom: 1px solid $borderColor_gray;
-        padding-left: 30px;
-        margin-right: auto;
-      }
-      &__action {
-        @include flex(ro);
-        margin-top: 30px;
-        &__editBtn {
-          @include btn($colorEdit, 30px, 60px);
-          margin-left: auto;
-        }
-        &__deleteBtn{
-          @include btn($colorDelete, 30px, 60px);
-          margin-left: 5px;
-        }
-      }
-    }
-    &__underItem {
-      height: 200px;
+  &__userData {
+    &__items {
+      @include flex(ro);
       width: 80%;
-      padding: 10px;
-      margin: 50px auto 0;
-      border: 1px solid $borderColor_gray;
+      margin: 0 auto;
+      &__leftItem {
+        @include flex(co);
+        width: 30%;
+        margin-left: auto;
+        &__image {
+          display: inline-block;
+          margin: 0 auto;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        &__follow {
+          @include flex(ro);
+          &__link {
+            text-decoration: none !important;
+            width: 50%;
+            margin: 0 auto;
+          }
+          &__counts {
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+          }
+        }
+      }
+      &__rightItem {
+        width: 50%;
+        margin-right: auto;
+        &__nameBox {
+          @include flex(ro);
+        }
+        &__text {
+          width: 300px;
+          border-bottom: 1px solid $borderColor_gray;
+          padding-left: 30px;
+          margin-right: auto;
+        }
+        &__action {
+          @include flex(ro);
+          margin-top: 30px;
+          &__editBtn {
+            @include btn($colorEdit, 30px, 60px);
+            margin-left: auto;
+          }
+          &__deleteBtn{
+            @include btn($colorDelete, 30px, 60px);
+            margin-left: 5px;
+          }
+        }
+      }
+      &__attention {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba($bk, 0.3);
+        &__contents {
+          width: 50%;
+          background-color: $wt;
+          padding: 100px 50px;
+          margin: 15% auto;
+        }
+        &__text {
+          text-align: center;
+        }
+        &__action {
+          text-align: center;
+          margin-top: 20px;
+          &__btn {
+            @include formBtn;
+            &--cancel {
+              display: inline-block;
+              @include formBtn($colorDelete);
+              margin-left: 5px;
+            }
+          }
+        }
+      }
+      &__underItem {
+        height: 200px;
+        width: 80%;
+        padding: 10px;
+        margin: 50px auto 0;
+        border: 1px solid $borderColor_gray;
+      }
     }
   }
-}
-
-
-.profileEdit {
-  &__container {
-    @include page;
-  }
-  &__contents {
-    @include container;
-    @include flex(ro);
-  }
-  &__image {
-    width: 30%;
-    margin-left: auto;
-    text-align: center;
-    &__data {
-      object-fit: cover;
+  &__reviews {
+    @include flex(co);
+    margin: 50px 0;
+    &__heading {
+      width: 80%;
+      border-bottom: 1px solid $borderColor_gray;
+      margin: 0 auto 50px;
+      &__text {
+        padding-left: 50px;
+      }
     }
-    &__text {
-      @include formTag_public(gray, 30px);
-      display: inline-block;
-    }
-  }
-  &__form {
-    width: 70%;
-    margin-right: auto;
-    & table, th, td {
-      border: 1px solid rgba($subColor_public, 0.5);
-      border-collapse: collapse;
-    }
-    &__item {
-      &__tag {
-        @include formTag_public;
+    &__items {
+      @include flex(ro);
+      width: 80%;
+      background-color: rgba($mainColor_public, 0.2);
+      margin: 0 auto 2px;
+      padding: 20px;
+      &__book {
+        @include flex(co);
+        width: 30%;
         text-align: center;
+        &__link {
+          display: inline-block;
+          text-decoration: none !important;
+        }
+        &__image {
+          display: inline-block;
+          object-fit: cover;
+          height: 100px;
+          width: 100px;
+        }
+        &__name {
+          width: 200px;
+          background-color: $wt;
+          text-align: center;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          margin: 10px auto;
+        }
       }
-      &__textBox {
-        @include formTextBox;
-      }
-    }
-    &__action {
-      padding: 30px;
-      text-align: center;
-      &__cancel {
-        @include btn($colorDelete, 30px, 90px);
-      }
-      &__submit {
-        @include btn($subColor_public, 30px, 60px);
+      &__review {
+        width: 70%;
+        background-color: $wt;
+        &__rate {
+          padding: 10px;
+        }
+        &__comment {
+          min-height: 150px;
+          padding: 10px 20px;
+        }
       }
     }
   }
 }
+
 
