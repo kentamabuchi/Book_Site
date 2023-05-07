@@ -6,29 +6,34 @@
           %p お探しの本がない場合はこちらから
         .books__newCreate__btn
           =link_to "登録", new_book_path(anchor: 'pageTop'), class: "books__newCreate__link"
-      .books__newLineup
-        .books__newLineup__items.slider
+
+      .books__slider__header
+        %h2 新着
+
+      .books__slider
+
+        .books__slider__items.slider
           -@books.each do |book|
-            =link_to book_path(book), class: "books__newLineup__item" do
-              =attachment_image_tag book, :image, fallback: "no_image_book.jpeg", class: 'books__newLineup__item__image'
-              .books__newLineup__item__data
-                .books__newLineup__item__data__text
-                  %p=book.name
-                .books__newLineup__item__data__text
-                  %p=book.writer
-                .books__newLineup__item__data__text
-                  %p=book.category.name
-                .books__newLineup__item__data__text
-                  %p=book.genre.name
-                .books__newLineup__item__data__rate
-                  %div{class: "books__newLineup__item__data__rate#{book.id}"}
+            =link_to book_path(book), class: "books__slider__item" do
+              =attachment_image_tag book, :image, fallback: "no_image_book.jpeg", class: 'books__slider__item__image'
+              .books__slider__item__data
+                .books__slider__item__data__cell
+                  %p.books__slider__item__data__text=book.name
+                .books__slider__item__data__cell
+                  %p.books__slider__item__data__text=book.writer
+                .books__slider__item__data__cell
+                  %p.books__slider__item__data__text=book.category.name
+                .books__slider__item__data__cell
+                  %p.books__slider__item__data__text=book.genre.name
+                .books__slider__item__data__cell
+                  %div{class: "books__slider__item__data__rate#{book.id}"}
                     - if book.reviews.blank?
                       - @average_rate = 0
                     - else
                       - @average_rate = book.reviews.average(:rate).round(1)
                     :javascript
-                      $(".books__newLineup__item__data__rate#{book.id}").empty();
-                      $(".books__newLineup__item__data__rate#{book.id}").raty({
+                      $(".books__slider__item__data__rate#{book.id}").empty();
+                      $(".books__slider__item__data__rate#{book.id}").raty({
                         starOff:  "#{asset_path('star-off.png')}",
                         starOn : "#{asset_path('star-on.png')}",
                         starHalf: "#{asset_path('star-half.png')}",
@@ -36,8 +41,41 @@
                         readOnly: true,
                         score: #{@average_rate}
                       });
-      .books__recommend
-        .books__recommend__items
+      - if user_signed_in? && @follow_books.present?
+
+        .books__slider__header
+          %h2 あなたにおすすめ
+        .books__slider--recommend
+          .books__slider__items.slider
+            - @follow_books.each do |book|
+              =link_to book_path(book), class: "books__slider__item" do
+                =attachment_image_tag book, :image, fallback: "no_image_book.jpeg", class: 'books__slider__item__image'
+                .books__slider__item__data
+                  .books__slider__item__data__cell
+                    %p.books__slider__item__data__text=book.name
+                  .books__slider__item__data__cell
+                    %p.books__slider__item__data__text=book.writer
+                  .books__slider__item__data__cell
+                    %p.books__slider__item__data__text=book.category.name
+                  .books__slider__item__data__cell
+                    %p.books__slider__item__data__text=book.genre.name
+                  .books__slider__item__data__cell
+                    %div{class: "books__slider__item__data__rate#{book.id}"}
+                      - if book.reviews.blank?
+                        - @average_rate = 0
+                      - else
+                        - @average_rate = book.reviews.average(:rate).round(1)
+                      :javascript
+                        $(".books__slider__item__data__rate#{book.id}").empty();
+                        $(".books__slider__item__data__rate#{book.id}").raty({
+                          starOff:  "#{asset_path('star-off.png')}",
+                          starOn : "#{asset_path('star-on.png')}",
+                          starHalf: "#{asset_path('star-half.png')}",
+                          half: true,
+                          readOnly: true,
+                          score: #{@average_rate}
+                        });
+
       .books__ranking
         .books__ranking__items
 

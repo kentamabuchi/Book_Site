@@ -88,7 +88,8 @@
                       });
                   .book__reviews__comments__item__text= review.comment
                   .book__reviews__comments__item__bottom
-                    = render 'public/good_reviews/good_review', {book: @book, review: review}
+                    - if user_signed_in?
+                      = render 'public/good_reviews/good_review', {book: @book, review: review}
                     = link_to book_review_path(@book, review.id), method: :get, class: 'book__reviews__comments__item__bottom__commentsIcon__link' do
                       %i.far.fa-comment.book__reviews__comments__item__bottom__commentsIcon__icon
                       .book__reviews__comments__item__bottom__commentsIcon__count= review.replies.count if review.replies.count != 0

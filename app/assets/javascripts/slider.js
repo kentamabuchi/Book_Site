@@ -1,6 +1,6 @@
 'use strict'; {
 
-  const items = document.getElementsByClassName('books__newLineup__item');
+  const items = document.getElementsByClassName('books__slider__item');
 
   if(items.length > 3){
     $(function () {
