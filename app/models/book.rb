@@ -8,6 +8,7 @@ class Book < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :parents, class_name: "Review", foreign_key: :parent_id, dependent: :destroy
   has_many :replies, class_name: "Review", foreign_key: :parent_id, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
 
   def self.follow_book_ranking(current_user)
