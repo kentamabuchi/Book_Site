@@ -1,8 +1,8 @@
 %div{class: "goodReview__#{review.id}"}
-  -if current_user.good_reviews.where(review_id: review.id).exists?
+  - if current_user.good_reviews.where(review_id: review.id).exists?
     = link_to book_review_good_reviews_path(book, review.id), method: :delete, class: "reviewCommentPage__reviewItems__bottom__icon, goodReview__icon", remote: true do
       %i.far.fa-thumbs-up
-  -else
+  - else
     = link_to book_review_good_reviews_path(book, review.id), method: :post, class: "reviewCommentPage__reviewItems__bottom__good--icon, goodReview__icon--none", remote: true do
       %i.far.fa-thumbs-up
   = review.good_reviews.count if review.good_reviews.count != 0

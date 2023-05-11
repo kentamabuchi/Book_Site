@@ -37,11 +37,19 @@
       text-decoration: none;
     }
   }
-  &__newLineup {
-    @include flex(ce);
+  &__slider {
     height: 270px;
     background-color: $subColor_public;
-    margin: 50px auto;
+    margin: 25px auto;
+    &--recommend {
+      @extend .books__slider;
+      background-color: yellow;
+    }
+    &__header {
+      padding-left: 50px;
+      margin-top: 50px;
+      border-bottom: 1px solid $borderColor_gray;
+    }
     &__items {
       height: 250px;
       width: 100%;
@@ -54,36 +62,35 @@
       background-color: $wt;
       opacity: 0.5;
       margin: 0 5px;
+      text-align: center;
       &:hover {
         position: relative;
       }
       &__image {
         height: 200px;
         width: 280px;
+        object-fit: cover;
+        margin: 0 auto;
       }
       &__data {
         position: absolute;
         bottom: 10px;
         right: 10px;
-        width:  230px;
         background-color: rgba($wt, 0.6);
         padding: 10px;
-        &__text {
+        &__cell {
+          width: 250px;
           border-bottom: 1px solid $borderColor_gray;
-          & p {
-            color: black;
-            padding: 2px 0;
-            margin-left: 20px;
-          }
+          text-align: left;
+          padding: 2px 0;
+          margin-top: 2px;
+          padding-left: 20px;
         }
-        &__rate {
-            display: inline-block;
-            padding: 2px 0;
-            margin-top: 2px;
-            margin-left: 20px;
-          & div img{
-            display: inline-block;
-          }
+        &__text {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          color: black;
         }
       }
     }
