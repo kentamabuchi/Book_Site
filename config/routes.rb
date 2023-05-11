@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [:show, :create, :update, :destroy] do
         resource :good_reviews, only: [:create, :destroy]
       end
+      resource :favorites, only: [:create, :destroy]
     end
 
     get 'mypage' => 'users#mypage', as: 'mypage'

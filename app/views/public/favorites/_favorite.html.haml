@@ -1,0 +1,5 @@
+%div{class: "favorite"}
+  - if current_user.favorites.where(book_id: book.id).exists?
+    = link_to "お気に入り", book_favorites_path(book_id: book.id), method: :delete, class: "favorite__icon", remote: true
+  - else
+    = link_to "お気に入り", book_favorites_path(book_id: book.id), method: :post, class: "favorite__icon--none", remote: true

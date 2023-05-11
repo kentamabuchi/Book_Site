@@ -17,6 +17,7 @@
                 score: #{@average_rate},
               });
             %p.book__items__leftItems__rate__score= "評価　#{@average_rate}"
+          = render "public/favorites/favorite", {book: @book}
         .book__items__rightItems
           .book__items__rightItems__data
             %p= @book.name
