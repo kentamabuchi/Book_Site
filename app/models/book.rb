@@ -11,14 +11,14 @@ class Book < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
 
-  def self.follow_book_ranking(current_user)
+  def self.follow_book(current_user)
     books = []
     current_user.followings.each do |user|
 
-      user.reviews.each do |review|
-        if review.present?
-          book = Book.find_by(id: review.book_id)
-          books.push(Book.find(review.book.id)) if book.present?
+      user.favorites.each do |favorite|
+        if favorite.present?
+          book = Book.find_by(id: favorite.book_id)
+          books.push(Book.find(favorite.book.id)) if book.present?
         else
           return nil
         end
