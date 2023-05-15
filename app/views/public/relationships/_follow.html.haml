@@ -23,13 +23,10 @@
               %p.follow__items__bottom__introduce よろしくお願いします。
             .follow__items__bottom__book
               -if follow.reviews.where(parent_id: nil).exists?
-                %p.follow__items__bottom__tag 最近レビューした本
-                - follow_reviews = follow.reviews.where(parent_id: nil).select(:id, :book_id).reverse_order
-                - current_reviews = []
+                %p.follow__items__bottom__tag お気に入りの本
 
-                - follow_reviews.each do |follow_review|
-                  -if current_reviews.empty? || !current_reviews.find{ |n| n[:book_id] == follow_review.book_id}.present?
-                    - current_reviews.push(follow_review)
-                    =link_to book_review_path(follow_review.book_id, follow_review.id), class: "follow__items__bottom__book__link" do
-                      = follow_review.book.name
+                -if !@books.empty?
+                  - @books.each do |book|
+                    =link_to book_path(book), class: "follow__items__bottom__book__link" do
+                      %p.follow__items__bottom__book__text= book.name
 
