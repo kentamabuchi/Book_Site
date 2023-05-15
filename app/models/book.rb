@@ -11,14 +11,17 @@ class Book < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
 
-  def self.follow_book(current_user)
+  def self.follow_book(current_user, page)
     books = []
     current_user.followings.each do |user|
 
       user.favorites.each do |favorite|
-        if favorite.present?
+        if favorite.present? && page == "book"
           book = Book.find_by(id: favorite.book_id)
-          books.push(Book.find(favorite.book.id)) if book.present?
+          books.push(Book.find(favorite.book.id)) if !current_user.favorites.find_by(book_id: book.id).present?
+        elsif favorite.present? && page == "follow"
+          book = Book.find_by(id: favorite.book_id)
+          books.push(Book.find(favorite.book.id))
         else
           return nil
         end
@@ -26,7 +29,8 @@ class Book < ApplicationRecord
 
     end
     books.uniq!
-    return books.sample(5)
+    return books.sample(6) if page == "book"
+    return books if page == "follow"
   end
 
 end

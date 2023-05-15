@@ -3,7 +3,7 @@ class Public::BooksController < ApplicationController
 
   def index
     @books = Book.all
-    @follow_books = Book.follow_book(current_user) if user_signed_in?
+    @follow_books = Book.follow_book(current_user, "book") if user_signed_in?
   end
 
   def show
