@@ -14,7 +14,7 @@
     = javascript_include_tag "raty.js"
 
   %body
-    - if @path.include?('admins')
+    - if @path.include?('admins') || @path.include?('/categories') || @path.include?('/genres') || admin_signed_in?
       .header--admin
 
         .header__logo
@@ -24,13 +24,9 @@
         .header__nav
           %ul.header__nav__list
             %li.header__nav__item
-              =link_to root_path, class: 'header__nav__item__link--admin' do
+              =link_to report_books_path, class: 'header__nav__item__link--admin' do
                 %p.header__nav__item__text
                   TOP
-            %li.header__nav__item
-              =link_to root_path, class: 'header__nav__item__link--admin' do
-                %p.header__nav__item__text
-                  ABOUT
             %li.header__nav__item
               =link_to books_path, class: 'header__nav__item__link--admin' do
                 %p.header__nav__item__text
@@ -43,6 +39,14 @@
                     ログイン
 
             - elsif admin_signed_in?
+              %li.header__nav__item
+                =link_to categories_path, class: 'header__nav__item__link--admin' do
+                  %p.header__nav__item__text
+                    カテゴリ
+              %li.header__nav__item
+                =link_to genres_path, class: 'header__nav__item__link--admin' do
+                  %p.header__nav__item__text
+                    ジャンル
               %li.header__nav__item
                 =link_to destroy_admin_session_path, method: :delete, class: 'header__nav__item__link--admin' do
                   %p.header__nav__item__text

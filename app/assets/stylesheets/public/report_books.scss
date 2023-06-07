@@ -1,26 +1,24 @@
-// Place all the styles related to the public/favorites controller here.
+// Place all the styles related to the public/ReportBooks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import './color';
 @import './template';
 
-.favorite {
-  text-align: center;
-  margin-top: 10px;
+.report {
   &__icon {
     text-decoration: none !important;
     display: inline-block;
     text-align: center;
     height: 30px;
     width: 150px;
-    background-color: red;
+    background-color: $borderColor_gray;
     color: $textColor_main;
     line-height: 30px;
     border-radius: 5px;
-    &--none {
-      @extend .favorite__icon;
-      background-color: $borderColor_gray;
+    &--link {
+      @extend .report__icon;
+      background-color: rgb(211, 211, 16);
     }
   }
 }

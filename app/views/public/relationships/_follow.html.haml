@@ -4,7 +4,7 @@
       - follows.each do |follow|
         .follow__items
           .follow__items__top
-            -if follow.id == current_user.id
+            -if user_signed_in? && follow.id == current_user.id
               = link_to mypage_path do
                 = attachment_image_tag follow, :image, :fill, 50, 50, fallback: 'no_image_user.jpg', size: '50x50', class: "follow__items__top__image"
             - else
@@ -12,7 +12,7 @@
                 = attachment_image_tag follow, :image, :fill, 50, 50, fallback: 'no_image_user.jpg', size: '50x50', class: "follow__items__top__image"
             %p.follow__items__top__name= follow.name
             .follow__items__top__followIcon
-              -if follow != current_user
+              -if user_signed_in? && follow != current_user
                 = render 'public/relationships/follow_icon', {user: follow}
                 - if follow.relationships.find_by(followed_id: current_user.id).present?
                   %p.follow__items__top__eachFollow フォローされています
@@ -23,7 +23,7 @@
               %p.follow__items__bottom__introduce よろしくお願いします。
             .follow__items__bottom__book
               -if follow.reviews.where(parent_id: nil).exists?
-                %p.follow__items__bottom__tag お気に入りの本
+                %p.follow__items__bottom__tag お気に入り
 
                 -if !@books.empty?
                   - @books.each do |book|

@@ -1,0 +1,40 @@
+.report__tab
+  = link_to "book", report_books_path, class: "report__tab__book"
+  = link_to "review", report_reviews_path, class: "report__tab__review"
+
+
+- if @path.include?("report_books")
+  .report__contents
+    .report__items
+      - if reports.present?
+        - reports.each do |report|
+          .report__item
+            .report__leftItems
+              = report.user.name
+
+            .report__rightItems
+              = report.book.name
+
+            .report__rightItems
+              = link_to "削除", book_path(report.book), method: :delete, class: "report__btn"
+      - else
+        %h2.report__item--none 報告はありません
+
+
+- elsif @path.include?("report_reviews")
+  .report__contents--other
+    .report__items
+      - if reports.present?
+        - reports.each do |report|
+          .report__item
+            .report__leftItems
+              = report.user.name
+
+            .report__rightItems
+              = report.review.comment
+            .report__rightItems
+              = report.review.user.name
+            .report__rightItems
+              = link_to "削除", admin_review_path(report.review), method: :delete, class: "report__btn"
+      - else
+        %h2.report__item--none 報告はありません

@@ -22,7 +22,7 @@
         .profile__userData__items__rightItem
           .profile__userData__items__rightItem__nameBox
             %p.profile__userData__items__rightItem__text= user.name
-            - if user != current_user
+            - if user_signed_in? && user != current_user
               = render "public/relationships/follow_icon", {user: user}
           - if user == current_user
             .profile__userData__items__rightItem__action

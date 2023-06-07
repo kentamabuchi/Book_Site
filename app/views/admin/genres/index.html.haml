@@ -18,5 +18,4 @@
             =form_with model: genre, url: genre_path(genre), method: :patch, local: true do |f|
               = f.text_field :name, value: genre.name
               =f.submit "変更", class: 'genres__list__item__submit'
-              =link_to "削除", genre_path(genre), method: :delete, class: 'genres__list__item__delete'      
-
+              =link_to "削除", genre_path(genre), method: :delete, class: 'genres__list__item__delete'
