@@ -8,7 +8,6 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @relationship = Relationship.find_by(followed_id: current_user.id, follower_id: @user.id)
     @follow = @user.followings
     @follower = @user.followers
     @reviews = @user.reviews.where(parent_id: nil).reverse_order.limit(5)

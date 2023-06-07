@@ -5,12 +5,13 @@ class ApplicationController < ActionController::Base
 
   def get_path
     @path = request.fullpath
+    @beforePath = request.referer
   end
 
 
 
   protected
-    
+
     def configure_permitted_parameters
         if resource_class == User
           devise_parameter_sanitizer.permit(:sign_up, keys: [:name,
@@ -38,7 +39,7 @@ class ApplicationController < ActionController::Base
     def after_sign_in_path_for(resource)
       case resource
           when Admin
-            homes_top_path
+            report_books_path
           when User
             books_path
       end

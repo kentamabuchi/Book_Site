@@ -16,8 +16,10 @@ Rails.application.routes.draw do
     resources :homes, only: [:top, :about]
 
     resources :books, only: [:index, :new, :create, :show, :update, :destroy] do
+      resource :report_books, only: [:create]
       resources :reviews, only: [:show, :create, :update, :destroy] do
         resource :good_reviews, only: [:create, :destroy]
+        resource :report_reviews, only: [:create]
       end
       resource :favorites, only: [:create, :destroy]
     end
@@ -40,9 +42,16 @@ Rails.application.routes.draw do
   end
 
   scope module: 'admin' do
-    get 'homes/top'
+    get 'admins/top/report_books' =>'homes#report_books', as: 'report_books'
+    get 'admins/top/report_reviews' =>'homes#report_reviews', as: 'report_reviews'
     resources :categories, only: [:index, :create, :update, :destroy]
     resources :genres, only: [:index, :create, :update, :destroy]
+    # resource :report_books, only:[:destroy]
+    # resource :report_reviews, only:[:delete]
+  end
+  namespace :admin do
+    resources :books, only: [:index, :destroy]
+    resources :reviews, only: [:destroy]
   end
 
 

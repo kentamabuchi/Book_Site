@@ -1,0 +1,6 @@
+%div{class: "report__#{review.id}"}
+  - if current_user.report_reviews.where(review_id: review.id).exists?
+    %p.report__icon 対応中
+  - else
+    = link_to book_review_report_reviews_path(book, review), class: 'report__icon--link', method: :post, remote: true do
+      報告

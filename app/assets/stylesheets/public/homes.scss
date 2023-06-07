@@ -2,4 +2,60 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import './color';
+@import './template';
 
+.report{
+  &__tab {
+    margin-top: 50px;
+    margin-left: 150px;
+    &__book {
+      text-decoration: none !important;
+      display: inline-block;
+      height: 40px;
+      width: 150px;
+      text-align: center;
+      line-height: 40px;
+      background-color: $mainColor_admin;
+      color: $textColor_main;
+      border-radius: 5px 5px 0 0;
+    }
+    &__review {
+      @extend .report__tab__book;
+      background-color: $subColor_admin;
+    }
+  }
+  &__contents {
+    width: 90%;
+    margin: 0 auto;
+    padding: 50px 0;
+    background-color: $mainColor_admin;
+    &--other {
+      @extend .report__contents;
+      background-color: $subColor_admin;
+    }
+  }
+  &__items {
+    width: 90%;
+    min-height: 500px;
+    background-color: $wt;
+    margin: 0 auto;
+    padding: 50px 0;
+  }
+  &__item {
+    @include flex(ro);
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px solid $borderColor_gray;
+    &--none {
+     @extend .report__item;
+    }
+  }
+  &__leftItems {
+    width: 30%;
+  }
+  &__rightItems {
+    width: 70%;
+  }
+
+}

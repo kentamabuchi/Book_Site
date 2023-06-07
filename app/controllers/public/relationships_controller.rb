@@ -41,7 +41,7 @@ class Public::RelationshipsController < ApplicationController
     if params[:id] == nil
       @books = Book.follow_book(current_user, "follow")
     else
-      @books = Book.folllow_book(User.find(params[:id]), "follow")
+      @books = Book.follow_book(User.find(params[:id]), "follow")
     end
   end
 

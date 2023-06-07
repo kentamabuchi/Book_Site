@@ -1,0 +1,6 @@
+%div{class: "report__#{book.id}"}
+  - if current_user.report_books.where(book_id: book.id).exists?
+    %p.report__icon 対応中
+  - else
+    = link_to book_report_books_path(book), class: 'report__icon--link', method: :post, remote: true do
+      報告

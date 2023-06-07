@@ -32,7 +32,11 @@ class Public::BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to books_path
+    if request.referer.include?("admins")
+      redirect_to report_books_path
+    else
+      redirect_to books_path
+    end
   end
 
   private

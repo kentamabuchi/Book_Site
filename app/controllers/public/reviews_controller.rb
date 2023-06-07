@@ -34,7 +34,11 @@ class Public::ReviewsController < ApplicationController
   def destroy
     @review = Review.find_by(id: params[:id], book_id: params[:book_id])
     @review.destroy
-    redirect_to book_path(params[:book_id], anchor: 'bookReview')
+    if request.referer.include?("admins")
+      redirect_to report_reviews_path
+    else
+      redirect_to book_path(params[:book_id], anchor: 'bookReview')
+    end
   end
 
   private

@@ -9,19 +9,19 @@ class Book < ApplicationRecord
   has_many :parents, class_name: "Review", foreign_key: :parent_id, dependent: :destroy
   has_many :replies, class_name: "Review", foreign_key: :parent_id, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :report_books, dependent: :destroy
 
 
-  def self.follow_book(current_user, page)
+  def self.follow_book(main_user, page)
     books = []
-    current_user.followings.each do |user|
+    users = main_user.followings.includes(favorites: :book)
+    users.each do |user|
 
       user.favorites.each do |favorite|
         if favorite.present? && page == "book"
-          book = Book.find_by(id: favorite.book_id)
-          books.push(Book.find(favorite.book.id)) if !current_user.favorites.find_by(book_id: book.id).present?
+          books.push(favorite.book) if !main_user.favorites.find_by(book_id: favorite.book.id).present?
         elsif favorite.present? && page == "follow"
-          book = Book.find_by(id: favorite.book_id)
-          books.push(Book.find(favorite.book.id))
+          books.push(favorite.book)
         else
           return nil
         end

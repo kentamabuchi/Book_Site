@@ -17,7 +17,11 @@
                 score: #{@average_rate},
               });
             %p.book__items__leftItems__rate__score= "評価　#{@average_rate}"
-          = render "public/favorites/favorite", {book: @book}
+          -if user_signed_in?
+            .book__items__leftItems__icon
+              = render "public/favorites/favorite", {book: @book}
+            .book__items__leftItems__icon
+              = render "public/report_books/report", {book: @book}
         .book__items__rightItems
           .book__items__rightItems__data
             %p= @book.name
@@ -91,9 +95,11 @@
                   .book__reviews__comments__item__bottom
                     - if user_signed_in?
                       = render 'public/good_reviews/good_review', {book: @book, review: review}
-                    = link_to book_review_path(@book, review.id), method: :get, class: 'book__reviews__comments__item__bottom__commentsIcon__link' do
-                      %i.far.fa-comment.book__reviews__comments__item__bottom__commentsIcon__icon
-                      .book__reviews__comments__item__bottom__commentsIcon__count= review.replies.count if review.replies.count != 0
+                      = link_to book_review_path(@book, review.id), method: :get, class: 'book__reviews__comments__item__bottom__commentsIcon__link' do
+                        %i.far.fa-comment.book__reviews__comments__item__bottom__commentsIcon__icon
+                        .book__reviews__comments__item__bottom__commentsIcon__count= review.replies.count if review.replies.count != 0
+                    -if user_signed_in? && review.user != current_user
+                      = render 'public/report_reviews/report', {book: @book, review: review}
 
                     .book__reviews__comments__item__date= review.created_at.strftime('%Y年%m月%d日 %H時%M分')
 
