@@ -40,6 +40,10 @@
 
             - elsif admin_signed_in?
               %li.header__nav__item
+                =link_to admin_books_path, class: 'header__nav__item__link--admin' do
+                  %p.header__nav__item__text
+                    Books
+              %li.header__nav__item
                 =link_to categories_path, class: 'header__nav__item__link--admin' do
                   %p.header__nav__item__text
                     カテゴリ

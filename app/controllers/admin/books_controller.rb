@@ -1,5 +1,9 @@
 class Admin::BooksController < ApplicationController
 
+  def index
+    @books = Book.all
+  end
+
   def destroy
     @book = Book.find(params[:id])
     @book.destroy

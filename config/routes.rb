@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     # resource :report_reviews, only:[:delete]
   end
   namespace :admin do
-    resources :books, only: [:index, :destroy]
+    resources :books, only: [:index, :new, :create, :destroy]
     resources :reviews, only: [:destroy]
   end
 
