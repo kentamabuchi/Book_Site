@@ -1,3 +1,57 @@
 // Place all the styles related to the admin/books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import './color';
+@import './template';
+
+
+.adminBooks {
+  &__return {
+    margin-bottom: 50px;
+    &__btn {
+      text-decoration: none !important;
+      display: inline-block;
+      height: 30px;
+      width: 115px;
+      line-height: 30px;
+      text-align: center;
+      background-color: $mainColor_admin;
+      color: $textColor_main;
+      clip-path: polygon(0 15px, 15px 0, 115px 0, 115px 30px, 15px 30px);
+      padding-left: 15px;
+    }
+  }
+  &__contents {
+    width: 100%;
+  }
+  &__items {
+    width: 90%;
+    margin: 0 auto;
+  }
+  &__item {
+    @include flex(ro);
+    border-bottom: 1px solid $borderColor_gray;
+    &__link {
+      text-decoration: none !important;
+      display: inline-block;
+      width: 300px;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    &__text {
+      height: 30px;
+      width: 150px;
+      line-height: 30px;
+      margin-left: 10px;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+}
+
