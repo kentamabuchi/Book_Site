@@ -1,7 +1,19 @@
 class Admin::BooksController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def index
     @books = Book.all
+    @book = Book.new
+  end
+
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def update
+    Book.find(params[:id]).update(book_params)
+    redirect_to admin_books_path
   end
 
   def destroy

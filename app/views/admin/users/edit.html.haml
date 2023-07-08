@@ -1,0 +1,46 @@
+.publicPage
+  .publicPage__container
+    .form__contents
+      .form__image
+        = attachment_image_tag @user, :image, :fill, 250, 250, fallback: 'no_image_user.jpg', size: '250x250', class: 'form__image__data', id: 'previewImage'
+        %p.form__image__text プレビュー
+      = form_with model: @user, url: admin_user_path(@user), method: :patch,class: 'profileEdit__form', local: true do |f|
+        %table.form__items
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :image, "画像"
+            %td.form__item__textarea
+              = f.attachment_field :image, direct: true, presigned: true, id: 'selectImage'
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :name, "名前"
+            %td.form__item__textarea
+              = f.text_field :name
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :email, "メールアドレス"
+            %td.form__item__textarea
+              = f.text_field :email
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :introduce, "自己紹介"
+            %td.form__item__textarea
+              = f.text_area :introduce
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :is_active, "ステータス"
+            %td.form__item__textarea
+              = f.label :is_active, "有効"
+              = f.radio_button :is_active, true
+              = f.label :is_active, "退会"
+              = f.radio_button :is_active, false
+
+        .form__action
+          =link_to "キャンセル", admin_users_path, class: 'form__action__btn--cancel'
+          =f.submit "変更",class: 'form__action__btn'
+    = javascript_include_tag 'form_image.js'

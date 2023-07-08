@@ -1,1 +1,8 @@
-=render 'public/users/profile', {user: @user, follow: @follow, follower: @follower, reviews: @reviews}
+- if admin_signed_in?
+  .adminPage
+    .adminPage__container
+      =render 'public/users/profile', {user: @user, follow: @follow, follower: @follower, reviews: @reviews}
+- else
+  .userPage
+    .userPage__container
+      =render 'public/users/profile', {user: @user, follow: @follow, follower: @follower, reviews: @reviews}

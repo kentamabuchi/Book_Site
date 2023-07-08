@@ -1,13 +1,13 @@
 .adminPage
   .adminPage__container
-    .adminBooks__return
-      = link_to "戻る", :back, class: 'adminBooks__return__btn'
     .adminBooks__contents
-      .adminBooks__items
-        - @books.each do |book|
-          .adminBooks__item
-            = link_to book_path(book), class: 'adminBooks__item__link' do
-              = book.name
-            .adminBooks__item__text= book.writer
-            .adminBooks__item__text= book.category.name
-            .adminBooks__item__text= book.genre.name
+      - @books.each do |book|
+        .adminBooks__item
+          = link_to book_path(book), class: 'adminBooks__item__link' do
+            = book.name
+          .adminBooks__item__text= book.writer
+          .adminBooks__item__text= book.category.name
+          .adminBooks__item__text= book.genre.name
+          = link_to "変更", edit_admin_book_path(book)
+
+

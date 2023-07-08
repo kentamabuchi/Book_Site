@@ -1,99 +1,96 @@
-.publicPage
-  .publicPage__container
+.profile__userData
 
-    .profile__userData
+  .profile__userData__items#pageTop
 
-      .profile__userData__items#pageTop
-
-        .profile__userData__items__leftItem
-          = attachment_image_tag user, :image, :fill, 200, 200, fallback: "no_image_user.jpg", size: '200x200', class: 'profile__userData__items__leftItem__image'
-          .profile__userData__items__leftItem__follow
-            - if user == current_user
-              = link_to mypage_follow_path, class: 'profile__userData__items__leftItem__follow__link' do
-                %p.profile__userData__items__leftItem__follow__counts= "フォロー　#{follow.count}"
-              = link_to mypage_follower_path, class: 'profile__userData__items__leftItem__follow__link' do
-                %p.profile__userData__items__leftItem__follow__counts= "フォロワー　#{follower.count}"
-            - else
-              = link_to follow_path(user), class: 'profile__userData__items__leftItem__follow__link' do
-                %p.profile__userData__items__leftItem__follow__counts= "フォロー　#{follow.count}"
-              = link_to follower_path(@user), class: 'profile__userData__items__leftItem__follow__link' do
-                %p.profile__userData__items__leftItem__follow__counts= "フォロワー　#{follower.count}"
-
-        .profile__userData__items__rightItem
-          .profile__userData__items__rightItem__nameBox
-            %p.profile__userData__items__rightItem__text= user.name
-            - if user_signed_in? && user != current_user
-              = render "public/relationships/follow_icon", {user: user}
-          - if user == current_user
-            .profile__userData__items__rightItem__action
-              = link_to "編集", profile_edit_path, class: 'profile__userData__items__rightItem__action__editBtn'
-              %p.profile__userData__items__rightItem__action__deleteBtn#deleteBtn 削除
-
-      .profile__userData__items__attention#attentionWindow.hidden
-        .profile__userData__items__attention__contents
-          .profile__userData__items__attention__text
-            %P
-              退会されますと登録情報が削除され、
-              一部機能が使用できなくなります。
-              %br
-              本当に退会しますか？
-          .profile__userData__items__attention__action
-            = link_to root_path, class: "profile__userData__items__attention__action__btn" do
-              %p はい
-            %p.profile__userData__items__attention__action__btn--cancel#cancelBtn いいえ
-      :javascript
-        'use strict'; {
-
-          const deleteBtn = document.getElementById("deleteBtn");
-          const cancelBtn = document.getElementById("cancelBtn");
-          const attentionWindow = document.getElementById("attentionWindow");
-
-          deleteBtn.addEventListener('click', ()=>{
-
-            attentionWindow.classList.remove("hidden");
-
-          });
-
-          attentionWindow.addEventListener('click', ()=>{
-
-            attentionWindow.classList.add("hidden");
-          });
-
-          cancelBtn.addEventListener('click', ()=>{
-
-            attentionWindow.classList.add("hidden");
-          });
-
-        }
-
-      .profile__userData__items__underItem
-        - if user.introduce.present?
-          %p.profile__userData__items__underItem__introduce= user.introduce
+    .profile__userData__items__leftItem
+      = attachment_image_tag user, :image, :fill, 200, 200, fallback: "no_image_user.jpg", size: '200x200', class: 'profile__userData__items__leftItem__image'
+      .profile__userData__items__leftItem__follow
+        - if user == current_user
+          = link_to mypage_follow_path, class: 'profile__userData__items__leftItem__follow__link' do
+            %p.profile__userData__items__leftItem__follow__counts= "フォロー　#{follow.count}"
+          = link_to mypage_follower_path, class: 'profile__userData__items__leftItem__follow__link' do
+            %p.profile__userData__items__leftItem__follow__counts= "フォロワー　#{follower.count}"
         - else
-          %p よろしくお願いします。
+          = link_to follow_path(user), class: 'profile__userData__items__leftItem__follow__link' do
+            %p.profile__userData__items__leftItem__follow__counts= "フォロー　#{follow.count}"
+          = link_to follower_path(@user), class: 'profile__userData__items__leftItem__follow__link' do
+            %p.profile__userData__items__leftItem__follow__counts= "フォロワー　#{follower.count}"
+
+    .profile__userData__items__rightItem
+      .profile__userData__items__rightItem__nameBox
+        %p.profile__userData__items__rightItem__text= user.name
+        - if user_signed_in? && user != current_user
+          = render "public/relationships/follow_icon", {user: user}
+      - if user == current_user
+        .profile__userData__items__rightItem__action
+          = link_to "編集", profile_edit_path, class: 'profile__userData__items__rightItem__action__editBtn'
+          %p.profile__userData__items__rightItem__action__deleteBtn#deleteBtn 削除
+
+  .profile__userData__items__attention#attentionWindow.hidden
+    .profile__userData__items__attention__contents
+      .profile__userData__items__attention__text
+        %P
+          退会されますと登録情報が削除され、
+          一部機能が使用できなくなります。
+          %br
+          本当に退会しますか？
+      .profile__userData__items__attention__action
+        = link_to root_path, class: "profile__userData__items__attention__action__btn" do
+          %p はい
+        %p.profile__userData__items__attention__action__btn--cancel#cancelBtn いいえ
+  :javascript
+    'use strict'; {
+
+      const deleteBtn = document.getElementById("deleteBtn");
+      const cancelBtn = document.getElementById("cancelBtn");
+      const attentionWindow = document.getElementById("attentionWindow");
+
+      deleteBtn.addEventListener('click', ()=>{
+
+        attentionWindow.classList.remove("hidden");
+
+      });
+
+      attentionWindow.addEventListener('click', ()=>{
+
+        attentionWindow.classList.add("hidden");
+      });
+
+      cancelBtn.addEventListener('click', ()=>{
+
+        attentionWindow.classList.add("hidden");
+      });
+
+    }
+
+  .profile__userData__items__underItem
+    - if user.introduce.present?
+      %p.profile__userData__items__underItem__introduce= user.introduce
+    - else
+      %p よろしくお願いします。
 
 
-    .profile__reviews
-      .profile__reviews__heading
-        %h3.profile__reviews__heading__text 最近のレビュー
-      - reviews.each do |review|
-        .profile__reviews__items
-          .profile__reviews__items__book
-            = link_to book_path(review.book), class: 'profile__reviews__items__book__link' do
-              = attachment_image_tag review.book, :image, :fill, 100, 100, fallback: 'no_image_book.jpg', size: '100x100', class: 'profile__reviews__items__book__image'
-            %p.profile__reviews__items__book__name= review.book.name
-          .profile__reviews__items__review
-            .profile__reviews__items__review__rate
-              %div{ class: "rate#{review.id}"}
-                :javascript
-                  $(".rate#{review.id}").empty();
-                  $(".rate#{review.id}").raty({
-                    starOff:  "#{asset_path('star-off.png')}",
-                    starOn : "#{asset_path('star-on.png')}",
-                    starHalf: "#{asset_path('star-half.png')}",
-                    half: true,
-                    readOnly: true,
-                    score: #{review.rate}
-                  });
-            .profile__reviews__items__review__comment= review.comment
+.profile__reviews
+  .profile__reviews__heading
+    %h3.profile__reviews__heading__text 最近のレビュー
+  - reviews.each do |review|
+    .profile__reviews__items
+      .profile__reviews__items__book
+        = link_to book_path(review.book), class: 'profile__reviews__items__book__link' do
+          = attachment_image_tag review.book, :image, :fill, 100, 100, fallback: 'no_image_book.jpg', size: '100x100', class: 'profile__reviews__items__book__image'
+        %p.profile__reviews__items__book__name= review.book.name
+      .profile__reviews__items__review
+        .profile__reviews__items__review__rate
+          %div{ class: "rate#{review.id}"}
+            :javascript
+              $(".rate#{review.id}").empty();
+              $(".rate#{review.id}").raty({
+                starOff:  "#{asset_path('star-off.png')}",
+                starOn : "#{asset_path('star-on.png')}",
+                starHalf: "#{asset_path('star-half.png')}",
+                half: true,
+                readOnly: true,
+                score: #{review.rate}
+              });
+        .profile__reviews__items__review__comment= review.comment
 

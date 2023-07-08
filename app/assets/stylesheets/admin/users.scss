@@ -1,12 +1,10 @@
-// Place all the styles related to the admin/books controller here.
+// Place all the styles related to the admin/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 @import './color';
 @import './template';
 
-
-.adminBooks {
+.adminUsers {
   &__return {
     margin-bottom: 50px;
     &__btn {
@@ -32,10 +30,11 @@
   &__item {
     @include flex(ro);
     border-bottom: 1px solid $borderColor_gray;
+    margin-bottom: 10px;
     &__link {
       text-decoration: none !important;
       display: inline-block;
-      width: 300px;
+      width: 200px;
       text-align: center;
       overflow: hidden;
       white-space: nowrap;
@@ -43,7 +42,7 @@
     }
     &__text {
       height: 30px;
-      width: 150px;
+      width: 200px;
       line-height: 30px;
       margin-left: 10px;
       text-align: center;
@@ -51,6 +50,8 @@
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+    &__btn {
+      @include formBtn($colorEdit);
+    }
   }
 }
-

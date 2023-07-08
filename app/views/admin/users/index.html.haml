@@ -1,0 +1,15 @@
+.adminPage
+  .adminPage__container
+    .adminUsers__contents
+      .adminUsers__items
+        - @users.each do |user|
+          .adminUsers__item
+            = link_to user_path(user), class: 'adminUsers__item__link' do
+              = user.name
+            .adminUsers__item__text= user.created_at.strftime('%Y/%m/%d')
+            .adminUsers__item__text= user.email
+            - if user.is_active == true
+              .adminUsers__item__text 有効
+            - else
+              .adminUsers__item__text 退会
+            = link_to "変更", edit_admin_user_path(user), class: 'adminUsers__item__btn'

@@ -46,11 +46,12 @@ Rails.application.routes.draw do
     get 'admins/top/report_reviews' =>'homes#report_reviews', as: 'report_reviews'
     resources :categories, only: [:index, :create, :update, :destroy]
     resources :genres, only: [:index, :create, :update, :destroy]
-    # resource :report_books, only:[:destroy]
-    # resource :report_reviews, only:[:delete]
   end
+
+
   namespace :admin do
-    resources :books, only: [:index, :new, :create, :destroy]
+    resources :users, only: [:index, :edit, :update]
+    resources :books, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :reviews, only: [:destroy]
   end
 
