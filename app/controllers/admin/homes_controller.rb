@@ -1,4 +1,7 @@
 class Admin::HomesController < ApplicationController
+
+  before_action :authenticate_admin!
+
   def report_books
     @books = ReportBook.all
   end
