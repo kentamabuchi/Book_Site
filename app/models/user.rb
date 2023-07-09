@@ -15,4 +15,8 @@ class User < ApplicationRecord
   has_many :report_books, dependent: :destroy
   has_many :report_reviews, dependent: :destroy
 
+  def active_for_authentication?
+    super && (is_active == true)
+  end
+
 end
