@@ -4,6 +4,7 @@ class Public::BooksController < ApplicationController
   def index
     @books = Book.all
     @follow_books = Book.follow_book(current_user, "book") if user_signed_in?
+    @all_ranks = Book.includes(:favorite_books).sort {|a,b| b.favorite_books.size <=> a.favorite_books.size}
   end
 
   def show

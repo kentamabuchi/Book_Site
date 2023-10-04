@@ -1,0 +1,44 @@
+.header--admin
+
+  .header__logo
+    %h1.header__logo__text
+      \\EE/_Books
+
+  .header__nav
+    %ul.navList
+      %li.navList__item
+        =link_to report_books_path, class: 'navList__link--admin' do
+          %p.navList__link__text
+            TOP
+      %li.navList__item
+        =link_to books_path, class: 'navList__link--admin' do
+          %p.navList__link__text
+            HOME
+
+      - if path.include?('admins/sign')
+        %li.navList__item
+          =link_to new_admin_session_path, class: 'navList__link--admin' do
+            %p.navList__link__text
+              ログイン
+
+      - elsif admin_signed_in?
+        %li.navList__item
+          =link_to admin_users_path, class: 'navList__link--admin' do
+            %p.navList__link__text
+              会員一覧
+        %li.navList__item
+          =link_to admin_books_path, class: 'navList__link--admin' do
+            %p.navList__link__text
+              Books
+        %li.navList__item
+          =link_to admin_categories_path, class: 'navList__link--admin' do
+            %p.navList__link__text
+              カテゴリ
+        %li.navList__item
+          =link_to admin_genres_path, class: 'navList__link--admin' do
+            %p.navList__link__text
+              ジャンル
+        %li.navList__item
+          =link_to destroy_admin_session_path, method: :delete, class: 'navList__link--admin' do
+            %p.navList__link__text
+              ログアウト

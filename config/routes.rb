@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   }
 
   devise_for :admins, controllers: {
-    sessions: 'admin/admins/sessions',
-    registrations: 'admin/admins/registrations'
+    sessions: 'admin/sessions',
+    registrations: 'admin/registrations'
   }
 
   scope module: 'public' do
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
     resources :books, only: [:index, :new, :create, :show, :update, :destroy] do
       resource :report_books, only: [:create]
-      resources :reviews, only: [:show, :create, :update, :destroy] do
+      resources :reviews, only: [:show, :create, :edit, :update, :destroy] do
         resource :good_reviews, only: [:create, :destroy]
         resource :report_reviews, only: [:create]
       end
@@ -53,6 +53,8 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :edit, :update]
     resources :books, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :reviews, only: [:destroy]
+    resources :categories, only: [:index, :create, :update, :destroy]
+    resources :genres, only: [:index, :create, :update, :destroy]
   end
 
 

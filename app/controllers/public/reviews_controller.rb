@@ -25,9 +25,12 @@ class Public::ReviewsController < ApplicationController
     redirect_to book_review_path(@review.book_id, @review)
   end
 
+  def edit
+  end
+
   def update
-    @review = Review.find(prams[:id])
-    @review.update
+    @review = Review.find(params[:id])
+    @review.update(review_params)
     redirect_to book_path(params[:book_id], anchor: 'bookReview')
   end
 

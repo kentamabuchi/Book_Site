@@ -1,0 +1,53 @@
+.form__contents
+      .form__image
+        = attachment_image_tag @book, :image, :fill, 250, 250, fallback: 'no_image_user.jpg', size: '250x250', class: 'form__image__data', id: 'previewImage'
+        %p.form__image__text プレビュー
+      = form_with model: @book, url: admin_book_path(@book), method: :patch, class: 'profileEdit__form', local: true do |f|
+        %table.form__items
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :image, "画像"
+            %td.form__item__textarea
+              = f.attachment_field :image, direct: true, presigned: true, id: 'selectImage'
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :name, "書籍名"
+            %td.form__item__textarea
+              = f.text_field :name
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :writer, "著者"
+            %td.form__item__textarea
+              = f.text_field :writer
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :content, "内容"
+            %td.form__item__textarea
+              = f.text_area :content
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :edit_status, "編集"
+            %td.form__item__textarea
+              = f.label :edit_status, "編集済み"
+              = f.radio_button :edit_status, true
+              = f.label :edit_status, "未編集"
+              = f.radio_button :edit_status, false
+
+          %tr.form__item
+            %th.form__item__label
+              = f.label :is_active, "ステータス"
+            %td.form__item__textarea
+              = f.label :is_active, "正常"
+              = f.radio_button :is_active, true
+              = f.label :is_active, "違反報告あり"
+              = f.radio_button :is_active, false
+
+
+        .form__action
+          =f.submit "変更",class: 'form__action__btn'
+    = javascript_include_tag 'form_image.js'
