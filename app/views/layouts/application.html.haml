@@ -14,127 +14,13 @@
     = javascript_include_tag "raty.js"
 
   %body
-    - if @path.include?('admins') || @path.include?('/categories') || @path.include?('/genres') || admin_signed_in?
-      .header--admin
+    - if @path.include?('admin') || admin_signed_in?
 
-        .header__logo
-          %h1.header__logo__text
-            \\EE/_Books
+      = render 'layouts/admin_header', {path: @path}
 
-        .header__nav
-          %ul.header__nav__list
-            %li.header__nav__item
-              =link_to report_books_path, class: 'header__nav__item__link--admin' do
-                %p.header__nav__item__text
-                  TOP
-            %li.header__nav__item
-              =link_to books_path, class: 'header__nav__item__link--admin' do
-                %p.header__nav__item__text
-                  HOME
+    - else
 
-            - if @path.include?('admins/sign')
-              %li.header__nav__item
-                =link_to new_admin_session_path, class: 'header__nav__item__link--admin' do
-                  %p.header__nav__item__text
-                    ログイン
-
-            - elsif admin_signed_in?
-              %li.header__nav__item
-                =link_to admin_users_path, class: 'header__nav__item__link--admin' do
-                  %p.header__nav__item__text
-                    会員一覧
-              %li.header__nav__item
-                =link_to admin_books_path, class: 'header__nav__item__link--admin' do
-                  %p.header__nav__item__text
-                    Books
-              %li.header__nav__item
-                =link_to categories_path, class: 'header__nav__item__link--admin' do
-                  %p.header__nav__item__text
-                    カテゴリ
-              %li.header__nav__item
-                =link_to genres_path, class: 'header__nav__item__link--admin' do
-                  %p.header__nav__item__text
-                    ジャンル
-              %li.header__nav__item
-                =link_to destroy_admin_session_path, method: :delete, class: 'header__nav__item__link--admin' do
-                  %p.header__nav__item__text
-                    ログアウト
-
-    - elsif controller.action_name == 'top'
-      .topHeader
-        .topHeader__topVisual
-
-          .topHeader__topVisual__logo
-            %h1.topHeader__topVisual__logo__text
-              \\EE/_Books
-
-        .topHeader__nav
-          %ul.topHeader__nav__list
-            %li.topHeader__nav__item
-              =link_to root_path, class: 'topHeader__nav__item__link' do
-                %p.topHeader__nav__item__text
-                  TOP
-            %li.topHeader__nav__item
-              =link_to root_path, class: 'topHeader__nav__item__link' do
-                %p.topHeader__nav__item__text
-                  ABOUT
-            %li.topHeader__nav__item
-              =link_to books_path, class: 'topHeader__nav__item__link' do
-                %p.topHeader__nav__item__text
-                  HOME
-            -if user_signed_in?
-              %li.topHeader__nav__item
-                =link_to destroy_user_session_path, class: 'topHeader__nav__item__link' do
-                  %p.topHeader__nav__item__text
-                    ログアウト
-            -else
-              %li.topHeader__nav__item
-                =link_to new_user_registration_path, class: 'topHeader__nav__item__link' do
-                  %p.topHeader__nav__item__text
-                    新規登録
-              %li.topHeader__nav__item
-                =link_to new_user_session_path, class: 'topHeader__nav__item__link' do
-                  %p.topHeader__nav__item__text
-                    ログイン
-    -else
-      .header
-
-        .header__logo
-          %h1.header__logo__text
-            \\EE/_Books
-
-        .header__nav
-          %ul.header__nav__list
-            %li.header__nav__item
-              =link_to root_path, class: 'header__nav__item__link' do
-                %p.header__nav__item__text
-                  TOP
-            %li.header__nav__item
-              =link_to root_path, class: 'header__nav__item__link' do
-                %p.header__nav__item__text
-                  ABOUT
-            %li.header__nav__item
-              =link_to books_path, class: 'header__nav__item__link' do
-                %p.header__nav__item__text
-                  HOME
-            -if user_signed_in?
-              %li.header__nav__item
-                =link_to mypage_path, class: 'header__nav__item__link' do
-                  %p.header__nav__item__text
-                    マイページ
-              %li.header__nav__item
-                =link_to destroy_user_session_path, method: :delete, class: 'header__nav__item__link' do
-                  %p.header__nav__item__text
-                    ログアウト
-            -else
-              %li.header__nav__item
-                =link_to new_user_registration_path, class: 'header__nav__item__link' do
-                  %p.header__nav__item__text
-                    新規登録
-              %li.header__nav__item
-                =link_to new_user_session_path, class: 'header__nav__item__link' do
-                  %p.header__nav__item__text
-                    ログイン
+      = render 'layouts/public_header'
 
 
 
@@ -142,3 +28,8 @@
     = yield
     %script{type: "text/javascript",src: "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"}
     =javascript_include_tag "validation.js"
+
+    .bottom
+      %h2.bottom__text
+        ©︎Copy Right
+

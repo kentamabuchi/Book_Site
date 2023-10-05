@@ -71,7 +71,7 @@
                       .book__reviews__comments__item__userIcon__name= review.user.name
 
                       .book__reviews__comments__item__action
-                        = link_to "編集", book_review_path(@book, review.id), method: :patch, class: 'book__reviews__comments__item__action__edit'
+                        = link_to "編集", edit_book_review_path(@book, review.id), class: 'book__reviews__comments__item__action__edit'
                         = link_to "削除", book_review_path(@book, review.id), method: :delete, class: 'book__reviews__comments__item__action__delete'
 
 
@@ -91,7 +91,7 @@
                         readOnly: true,
                         score: #{review.rate}
                       });
-                  .book__reviews__comments__item__text= review.comment
+                  .book__reviews__comments__item__text= safe_join(review.comment.truncate(100).split("\n"), tag(:br))
                   .book__reviews__comments__item__bottom
                     - if user_signed_in?
                       = render 'public/good_reviews/good_review', {book: @book, review: review}

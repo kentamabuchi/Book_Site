@@ -1,0 +1,82 @@
+- if controller.action_name == 'top'
+
+  .header--top
+    .header__topVisual
+
+      %h1.header__logo--top
+        \\EE/_Books
+
+    .header__nav--top
+      %ul.navList--top
+        %li.navList__item--top
+          =link_to root_path, class: 'navList__link--top' do
+            %p.navList__link__text
+              TOP
+        %li.navList__item--top
+          =link_to root_path, class: 'navList__link--top' do
+            %p.navList__link__text
+              ABOUT
+        %li.navList__item--top
+          =link_to books_path, class: 'navList__link--top' do
+            %p.navList__link__text
+              HOME
+        -if user_signed_in?
+          %li.navList__item--top
+            =link_to destroy_user_session_path, class: 'navList__link--top' do
+              %p.navList__link__text
+                ログアウト
+        -else
+          %li.navList__item--top
+            =link_to new_user_registration_path, class: 'navList__link--top' do
+              %p.navList__link__text
+                新規登録
+          %li.navList__item--top
+            =link_to new_user_session_path, class: 'navList__link--top' do
+              %p.navList__link__text
+                ログイン
+
+
+
+- else
+
+  .header
+
+    %h1.header__logo
+      \\EE/_Books
+
+    .header__nav
+      %ul.navList
+        %li.navList__item
+          =link_to root_path, class: 'navList__link' do
+            %p.navList__link__text
+              TOP
+        %li.navList__item
+          =link_to root_path, class: 'navList__link' do
+            %p.navList__link__text
+              ABOUT
+        %li.navList__item
+          =link_to books_path, class: 'navList__link' do
+            %p.navList__link__text
+              HOME
+        -if user_signed_in?
+          %li.navList__item
+            =link_to mypage_path, class: 'navList__link' do
+              %p.navList__link__text
+                マイページ
+          %li.navList__item
+            =link_to destroy_user_session_path, method: :delete, class: 'navList__link' do
+              %p.navList__link__text
+                ログアウト
+        -else
+          %li.navList__item
+            =link_to new_user_registration_path, class: 'navList__link' do
+              %p.navList__link__text
+                新規登録
+          %li.navList__item
+            =link_to new_user_session_path, class: 'navList__link' do
+              %p.navList__link__text
+                ログイン
+
+
+
+
