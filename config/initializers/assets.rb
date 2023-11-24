@@ -13,6 +13,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
+Rails.application.config.assets.precompile += %w(label.js)
 Rails.application.config.assets.precompile += %w(slider.js)
 Rails.application.config.assets.precompile += %w(validation.js)
 Rails.application.config.assets.precompile += %w(form_image.js)

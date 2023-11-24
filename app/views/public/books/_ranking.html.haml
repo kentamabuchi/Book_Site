@@ -1,0 +1,25 @@
+.ranking__contents
+  - if books.size > 3
+    = link_to book_path(books[0]), class: "ranking__item--top", id: "book1" do
+      =attachment_image_tag books[0], :image, fallback: "no_image_book.jpeg", class: 'books__slider__item__image'
+      .ranking__item__data
+        %p.ranking__item__text= books[0].name
+        %p.ranking__item__text= books[0].writer
+    - books.each.with_index(1) do |book,i|
+      - next if book == books[0]
+      - break if i > 10
+      = link_to book_path(book), class: 'ranking__item', id: "book#{i}" do
+        =attachment_image_tag book, :image, fallback: "no_image_book.jpeg", class: 'books__slider__item__image'
+        .ranking__item__data
+          %p.ranking__item__text= book.name
+          %p.ranking__item__text= book.writer
+          %p.ranking__item__text= i
+  - else
+    - books.each do |book|
+      = link_to book_path(book), class: 'ranking__item' do
+        =attachment_image_tag book, :image, fallback: "no_image_book.jpeg", class: 'books__slider__item__image'
+        .ranking__item__data
+          %p.ranking__item__text= book.name
+          %p.ranking__item__text= book.writer
+
+
