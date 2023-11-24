@@ -58,7 +58,7 @@
       }
     }
 
-  }
+  };
 
   if(location.href.includes('books/new')){
     validation.init ({
